@@ -1,0 +1,91 @@
+.talleres-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.talleres-titulo {
+  text-align: center;
+  font-size: 2rem;
+  color: #53107F;
+  margin-bottom: 2rem;
+}
+
+.talleres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 2rem;
+}
+
+.taller-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.taller-card:hover {
+  transform: translateY(-4px);
+}
+
+.taller-imagen {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.taller-imagen-placeholder {
+  width: 100%;
+  height: 200px;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+  font-weight: bold;
+}
+
+.taller-info {
+  padding: 1rem;
+}
+
+.taller-info h2 {
+  font-size: 1.2rem;
+  color: #53107F;
+  margin-bottom: 0.5rem;
+}
+
+.taller-fecha-hora {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 0.3rem;
+}
+
+.taller-facilitador {
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+}
+
+.taller-descripcion {
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+details summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #53107F;
+  font-weight: bold;
+}
+
+details[open] summary {
+  margin-bottom: 0.5rem;
+}

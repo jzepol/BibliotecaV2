@@ -1,0 +1,45 @@
+{
+  "name": "bibliotecav2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postbuild": "next-sitemap"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.6.0",
+    "date-fns": "^4.1.0",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "next": "^15.2.4",
+    "next-cloudinary": "^6.16.0",
+    "next-sitemap": "^4.2.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-dropzone": "^14.3.8",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^20.17.29",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19",
+    "eslint": "^9.23.0",
+    "eslint-config-next": "^15.2.4",
+    "prisma": "^6.5.0",
+    "typescript": "^5.8.2"
+  },
+  "description": "Este proyecto es una aplicación web para la gestión y difusión de eventos, noticias y asociación de la Biblioteca Popular Antonio Esteban Agüero de Villa Mercedes, San Luis.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

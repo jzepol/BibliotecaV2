@@ -1,0 +1,76 @@
+.grid-talleres {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.grid-talleres h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #53107F;
+}
+
+.tabla-scroll {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+thead {
+  background-color: #53107F;
+  color: white;
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+.btn-accion {
+  background-color: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.btn-accion.editar {
+  color: #007bff;
+}
+
+.btn-accion.editar:hover {
+  color: #0056b3;
+}
+
+.btn-accion.eliminar {
+  color: #dc3545;
+}
+
+.btn-accion.eliminar:hover {
+  color: #a71d2a;
+}
+
+@media (max-width: 768px) {
+  .grid-talleres {
+    padding: 1rem;
+  }
+
+  table {
+    min-width: unset;
+  }
+}

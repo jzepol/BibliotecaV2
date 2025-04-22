@@ -1,0 +1,38 @@
+import '@/styles/Footer.css'
+import { FaInstagram } from 'react-icons/fa'
+import { MdEmail } from 'react-icons/md'
+import { FaWhatsapp } from 'react-icons/fa'
+
+export default function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-content">
+        <p>📚💜 Biblioteca Popular Autogestiva</p>
+        <p>¡Cumplimos 30 años!</p>
+        <p>CONABIP 3188 📖</p>
+
+        <div className="footer-links">
+          <a
+            href="https://www.instagram.com/bibliotecaaguero/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram /> Instagram
+          </a>
+          <a href="mailto:bibliotecaestebanaguero@gmail.com">
+            <MdEmail /> Mail
+          </a>
+          <a
+            href="https://wa.me/5492657500785"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaWhatsapp /> WhatsApp
+          </a>
+        </div>
+
+        <p className="footer-copy">© {new Date().getFullYear()} Biblioteca Antonio Esteban Agüero</p>
+      </div>
+    </footer>
+  )
+}

@@ -1,0 +1,109 @@
+.comision-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #53107F;
+  text-align: center;
+  text-decoration:underline;
+}
+
+.miembro-comision {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.miembro-comision:hover {
+  transform: scale(1.01);
+}
+
+.miembro-comision img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #53107F;
+}
+
+.info-miembro h2 {
+  font-size: 1.3rem;
+  color: #ff3bef;
+  margin-bottom: 0.2rem;
+  border-bottom: 2px solid #ffd3ec;
+  display: inline-block;
+}
+
+.info-miembro p {
+  font-size: 1rem;
+  color: #474747;
+}
+
+/* VOLUNTARIXS */
+
+.voluntarios-titulo {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  color: #53107F;
+  text-decoration:underline;
+}
+
+.voluntarios-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.voluntario-item {
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.voluntario-item:hover {
+  transform: translateY(-3px);
+}
+
+.voluntario-item img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #53107F;
+}
+
+.voluntario-nombre {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+
+@media (max-width: 600px) {
+  .miembro-comision {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .miembro-comision img {
+    margin-bottom: 0.5rem;
+  }
+}

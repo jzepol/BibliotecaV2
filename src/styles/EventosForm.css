@@ -1,0 +1,45 @@
+.evento-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 2rem auto;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .evento-form h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #53107f;
+    text-align: center;
+  }
+  
+  .evento-form input,
+  .evento-form textarea,
+  .evento-form select {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+  
+  .evento-form button {
+    background: #ffc107;
+    color: black;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  .evento-form button:hover {
+    background: #ffa000;
+  }
+  

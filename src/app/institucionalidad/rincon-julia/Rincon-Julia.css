@@ -1,0 +1,90 @@
+.rincon-julia-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .rincon-julia-container h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.3rem;
+    color: #53107F;
+    text-align: center;
+  }
+  .rincon-julia-container h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: #330a4e;
+    text-align: center;
+    text-decoration-line: underline;
+  }
+  .rincon-julia-container img {
+    display: block;
+    margin: 1rem auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .rincon-julia-container p {
+    margin: 1rem 0;
+    font-size: 1.05rem;
+  }
+  
+  .rincon-julia-container strong {
+    color: #53107F;
+  }
+  
+  .rincon-julia-cita {
+    font-style: italic;
+    color: #ff3bef;
+    background-color: #f8f1fc;
+    border-left: 4px solid #53107F;
+    padding: 1rem;
+    margin: 2rem 0;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .rincon-julia-container {
+      padding: 1.5rem 1rem;
+    }
+  
+    .rincon-julia-container h1 {
+      font-size: 2rem;
+    }
+  
+    .rincon-julia-cita {
+      font-size: 1rem;
+    }
+    .rincon-julia-fuente {
+      margin-top: 1.5rem;
+      padding: 1rem 1.5rem;
+      background-color: #fcf4ff;
+      border-left: 6px solid #8e24aa;
+      border-radius: 10px;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #c2185b;
+      max-width: 900px;
+      line-height: 1.5;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .rincon-julia-fuente a {
+      color: #d81b60;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    .rincon-julia-fuente a:hover {
+      text-decoration: underline;
+    }
+    
+  }
+  

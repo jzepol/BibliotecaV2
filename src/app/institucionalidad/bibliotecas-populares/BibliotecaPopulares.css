@@ -1,0 +1,49 @@
+.biblioteca-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .biblioteca-container h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #53107F;
+    text-align: center;
+  }
+  
+  .biblioteca-container h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    color: #53107F;
+    border-bottom: 2px solid #ff3bef;
+    padding-bottom: 0.5rem;
+  }
+  
+  .biblioteca-container h3 {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    color: #000;
+  }
+  
+  .biblioteca-container p {
+    margin: 0.5rem 0;
+  }
+  
+  .biblioteca-container ul {
+    margin: 1rem 0;
+    padding-left: 1.2rem;
+  }
+  
+  .biblioteca-container a {
+    color: #53107F;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .biblioteca-container a:hover {
+    text-decoration: underline;
+  }
+  

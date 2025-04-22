@@ -1,0 +1,109 @@
+.grid-asociados {
+  width: 100%;
+  max-width: 100%;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+.grid-asociados h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #53107F;
+}
+
+.grid-asociados input {
+  display: block;
+  margin: 0 auto 1rem auto;
+  padding: 0.5rem 1rem;
+  width: 80%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.grid-asociados button {
+  background-color: #53107F;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.grid-asociados button:hover {
+  background-color: #ff3bef;
+}
+
+.tabla-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px; /* asegura espacio para columnas largas */
+}
+
+thead {
+  background-color: #53107F;
+  color: white;
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+tr:hover {
+  background-color:#ff3bef;
+}
+
+@media (max-width: 768px) {
+  .grid-asociados {
+    padding: 1rem;
+  }
+
+  .grid-asociados input {
+    width: 100%;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  th, td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+}
+.btn-accion {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 0.25rem;
+  transition: transform 0.2s;
+}
+
+.btn-accion:hover {
+  transform: scale(1.2);
+}
+
+.btn-accion.editar {
+  color: #fec10b;
+}
+
+.btn-accion.eliminar {
+  color: #ff3bef;
+}

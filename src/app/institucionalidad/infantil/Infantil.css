@@ -1,0 +1,67 @@
+.biblioteca-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #fffdf9;
+    border-radius: 12px;
+  }
+  
+  .biblioteca-container h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #ff3bef;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .biblioteca-container h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    color: #53107F;
+    border-bottom: 2px dashed #ff3bef;
+    padding-bottom: 0.5rem;
+  }
+  
+  .biblioteca-container p {
+    margin: 0.75rem 0;
+    font-size: 1rem;
+  }
+  
+  .biblioteca-container ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .biblioteca-container ul li {
+    list-style-type: "📚 ";
+    margin-bottom: 0.5rem;
+  }
+  
+  .biblioteca-container a {
+    color: #ff3bef;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .biblioteca-container a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .biblioteca-container {
+      padding: 1rem;
+    }
+  
+    .biblioteca-container h1 {
+      font-size: 1.8rem;
+    }
+  
+    .biblioteca-container h2 {
+      font-size: 1.3rem;
+    }
+  }
+  

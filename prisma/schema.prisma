@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  password  String
+  rol       String  @default("editor")
+}
+
+model Noticia {
+  id         Int      @id @default(autoincrement())
+  titulo     String
+  contenido  String
+  imagenUrl  String
+  fecha      DateTime @default(now())
+}
+
+enum EstadoEvento {
+  PROXIMAMENTE
+  EN_CURSO
+  FINALIZADO
+}
+
+model Evento {
+  id          Int           @id @default(autoincrement())
+  titulo      String
+  descripcion String
+  fecha       DateTime
+  imagenUrl   String
+  estado      EstadoEvento  @default(PROXIMAMENTE)
+}
+
+
+model Asociado {
+  id                 Int      @id @default(autoincrement())
+  email              String   @unique
+  apellido           String
+  nombre             String
+  dni                Int
+  fechaNacimiento    DateTime
+  direccion          String
+  categoria          Categoria
+  escuela            String?   // solo si es juvenil
+  curso              String?   // solo si es juvenil
+  comentario         String?
+  fechaInscripcion   DateTime  @default(now())
+}
+
+enum Categoria {
+  ACTIVO
+  JUVENIL
+  CONTRIBUYENTE
+}
+
+model Taller {
+  id           Int      @id @default(autoincrement())
+  titulo       String
+  descripcion  String
+  imagenUrl    String
+  fecha        DateTime
+  hora         String
+  facilitador  String
+  creadoEn     DateTime @default(now())
+}
