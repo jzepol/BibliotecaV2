@@ -6,11 +6,16 @@ export async function crearTaller(data: {
   titulo: string
   descripcion: string
   imagenUrl: string
-  fecha: Date
+  fecha: string 
   hora: string
   facilitador: string
 }) {
-  return await prisma.taller.create({ data })
+  return await prisma.taller.create({
+    data: {
+      ...data,
+      fecha: new Date(data.fecha) 
+    }
+  })
 }
 
 export async function obtenerTalleres() {
@@ -29,13 +34,16 @@ export async function actualizarTaller(id: number, data: {
   titulo: string
   descripcion: string
   imagenUrl: string
-  fecha: Date
+  fecha: string  
   hora: string
   facilitador: string
 }) {
   return await prisma.taller.update({
     where: { id },
-    data,
+    data: {
+      ...data,
+      fecha: new Date(data.fecha) // conversión segura
+    }
   })
 }
 
