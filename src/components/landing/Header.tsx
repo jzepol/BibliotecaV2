@@ -36,7 +36,7 @@ export default function Header() {
             </div>
           </div>
 
-         {/*  <Link href="/talleres">Talleres</Link> */}
+          <Link href="/talleres">Talleres</Link>
           {/* <Link href="/convocatorias">Convocatorias</Link> */}
         </div>
 

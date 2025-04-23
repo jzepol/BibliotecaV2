@@ -8,7 +8,7 @@ Este proyecto es una aplicación web para la gestión y difusión de eventos, no
 
 - [Next.js 15](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
+- [CSS]
 - [Prisma ORM](https://www.prisma.io/)
 - [PostgreSQL](https://www.postgresql.org/)
 - Autenticación con JWT
@@ -30,7 +30,10 @@ src/ ├── app/ # Páginas con App Router ├── components/ # Componente
 - ✅ Formulario de Asociación con campos condicionales
 - ✅ Sistema modular y escalable
 - ✅ Estilo institucional basado en identidad visual
-
+- ✅ Institucionalidad https://bibliotecaurquiza.org.ar/bibliotecas-populares/ 
+- ✅ Panel con gestión completa de asociados
+- ✅ Subida de imagen a noticias y eventos
+- ✅ Soporte multiusuario y permisos
 ---
 
 ## 🛠️ Scripts útiles
@@ -51,74 +54,85 @@ npm install jsonwebtoken
 npm install bcrypt
 
 
+## 🔐 Variables necesarias (.env)
+
+DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/nombre_basedatos
+JWT_SECRET=clave_supersecreta
+CLOUDINARY_CLOUD_NAME=nombre_cloud
+CLOUDINARY_API_KEY=clave
+CLOUDINARY_API_SECRET=secreto
+
+
 ##📝 Pendientes / ideas futuras
 Envío automático de recordatorios por mail a asociados activos
 
-Institucionalidad https://bibliotecaurquiza.org.ar/bibliotecas-populares/ 
-
-Panel con gestión completa de asociados
-
-Subida de imagen a noticias y eventos
-
-Soporte multiusuario y permisos
 
 Optimización SEO
 
 
 _________________________
 ##Estructura del proyecto
-BibliotecaV2/
+BIBLIOTECAV2/
+├── prisma/                        # Esquema y migraciones Prisma
+│   ├── schema.prisma
+│   └── migrations/
 │
-├── prisma/
-│   └── schema.prisma                  # Definición de modelos Prisma
-│
-├── public/
+├── public/                        # Archivos estáticos
 │   └── img/
-│       └── Fondolineasok.webp         # Fondo decorativo para el formulario
+│       ├── logos, iconos, fondo, etc.
 │
 ├── src/
-│   ├── app/
-│   │   ├── layout.tsx                 # Layout global (Header + Footer)
-│   │   ├── page.tsx                   # Landing principal
-│   │   ├── login/page.tsx             # Login de administración
-│   │   ├── dashboard/page.tsx         # Panel interno (noticias/eventos)
-│   │   ├── asociarse/page.tsx         # Formulario público de asociación
-│   │   ├── noticias/page.tsx          # Vista pública de noticias
-│   │   ├── eventos/page.tsx           # Vista pública de eventos
-│   │   └── api/
-│   │       ├── auth/
-│   │       │   ├── login/route.ts
-│   │       │   └── register/route.ts
-│   │       ├── noticias/route.ts
-│   │       ├── eventos/route.ts
-│   │       └── asociados/route.ts
-│   │
-│   ├── components/
-│   │   ├── landing/
-│   │   │   ├── Header.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   └── Hero.tsx
-│   │   ├── forms/
-│   │   │   ├── NoticiaForm.tsx
-│   │   │   └── EventoForm.tsx
-│   │   ├── asociados/
-│   │   │   └── AsociadoForm.tsx
-│   │   ├── noticias/
-│   │   │   └── NoticiaCard.tsx
-│   │   └── eventos/
-│   │       └── EventosCard.tsx
-│   │
-│   └── services/
-│       ├── auth.ts
-│       ├── eventos.ts
-│       ├── noticias.ts
-│       └── asociados.ts
+│   ├── app/                       # Rutas con App Router
+│   │   ├── login/                 # Página de inicio de sesión
+│   │   ├── dashboard/            # Panel administrativo
+│   │   ├── asociarse/            # Formulario público de socios
+│   │   ├── noticias/             # Página de noticias
+│   │   ├── eventos/              # Página de eventos
+│   │   ├── talleres/             # Página de talleres
+│   │   ├── institucionalidad/
+│   │   │   ├── bibliotecas-populares/
+│   │   │   ├── comision-directiva/
+│   │   │   ├── horarios/
+│   │   │   ├── infantil/
+│   │   │   └── rincon-julia/
+│   │   └── api/                  # Rutas API REST
+│   │       ├── auth/             # Login y registro
+│   │       │   ├── login/
+│   │       │   └── register/
+│   │       ├── asociados/        # Gestión de socios
+│   │       ├── eventos/          # Gestión de eventos
+│   │       ├── noticias/         # Gestión de noticias
+│   │       ├── talleres/         # Gestión de talleres
+│   │       └── upload/           # Subida de imágenes
 │
-├── .env                               # Config de la base de datos
-├── tailwind.config.ts
-├── postcss.config.js
-├── next.config.ts
-├── tsconfig.json
+│   ├── components/               # Componentes reutilizables
+│   │   ├── dashboard/
+│   │   ├── eventos/
+│   │   ├── forms/
+│   │   ├── asociados/
+│   │   ├── noticias/
+│   │   └── landing/
+│
+│   ├── services/                 # Acceso a datos con Prisma
+│   │   ├── auth.ts
+│   │   ├── asociados.ts
+│   │   ├── eventos.ts
+│   │   ├── noticias.ts
+│   │   └── talleres.ts
+│
+│   ├── styles/                   # CSS modularizado
+│   │   └── *.css
+│
+│   └── lib/                      # Utilidades generales
+│       ├── cloudinary.ts
+│       ├── getUserFromToken.ts
+│       ├── prisma.ts
+│       └── withAuth.ts
+│
+├── .env                          # Variables de entorno
+├── next.config.ts                # Configuración Next.js
+├── middleware.ts                 # Middleware de autenticación
+├── tsconfig.json                 # Configuración TypeScript
 ├── package.json
 └── README.md
 

@@ -1,11 +1,13 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import {
   actualizarTaller,
   eliminarTaller
 } from '@/services/talleres'
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
-  const id = parseInt(params.id, 10)
+// PUT /api/talleres/[id]
+export async function PUT(req: NextRequest) {
+  const url = new URL(req.url)
+  const id = parseInt(url.pathname.split('/').pop() || '', 10)
   const data = await req.json()
 
   try {
@@ -17,8 +19,10 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   }
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
-  const id = parseInt(params.id, 10)
+// DELETE /api/talleres/[id]
+export async function DELETE(req: NextRequest) {
+  const url = new URL(req.url)
+  const id = parseInt(url.pathname.split('/').pop() || '', 10)
 
   try {
     await eliminarTaller(id)
