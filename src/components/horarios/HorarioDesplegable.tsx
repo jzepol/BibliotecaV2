@@ -19,8 +19,8 @@ export default function HorarioDesplegable() {
       {visible && (
         <div className="horario-panel">
           <h3>📚 Horarios de Atención</h3>
-          <p><strong>Mañana</strong>:<br />Lunes, Martes, Jueves<br />10:00 a 12:30 hs</p>
-          <p><strong>Tarde</strong>:<br />Lunes, Martes, Miércoles, Jueves<br />17:00 a 19:30 hs</p>
+          <p><strong>Mañana</strong>:<br />Lunes y Martes<br />10:00 a 13:00 hs</p>
+          <p><strong>Tarde</strong>:<br />Lunes, Martes, Miércoles, Jueves, Viernes<br />17:00 a 20:00 hs</p>
         </div>
       )}
     </div>

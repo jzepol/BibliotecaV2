@@ -35,7 +35,7 @@ export default function Header() {
               <Link href="/institucionalidad/horarios">Horarios de Atención</Link>
             </div>
           </div>
-
+          <Link href="/eventos">Eventos</Link>
           <Link href="/talleres">Talleres</Link>
           {/* <Link href="/convocatorias">Convocatorias</Link> */}
         </div>
