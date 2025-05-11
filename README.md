@@ -34,6 +34,7 @@ src/ ├── app/ # Páginas con App Router ├── components/ # Componente
 - ✅ Panel con gestión completa de asociados
 - ✅ Subida de imagen a noticias y eventos
 - ✅ Soporte multiusuario y permisos
+- ✅ Optimización SEO
 ---
 
 ## 🛠️ Scripts útiles
@@ -64,10 +65,10 @@ CLOUDINARY_API_SECRET=secreto
 
 
 ##📝 Pendientes / ideas futuras
-Envío automático de recordatorios por mail a asociados activos
+Envío automático de recordatorios de pago por mail a asociados activos
 
 
-Optimización SEO
+
 
 
 _________________________
