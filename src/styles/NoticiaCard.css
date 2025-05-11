@@ -1,89 +1,94 @@
-.noticias-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
+/* ======== Tarjeta Noticia ======== */
 .noticia-card {
   background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  max-width: 100%;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.3s ease;
-  height: 100%;
 }
 
 .noticia-card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+}
+
+/* Imagen */
+.noticia-img-wrapper {
+  position: relative;
 }
 
 .noticia-img {
   width: 100%;
-  height: 300px;
-  object-fit: contain;
+  height: auto;
+  display: block;
 }
 
-.noticia-body {
-  padding: 1rem;
-  flex-grow: 1;
+.noticia-img-placeholder {
+  height: 200px;
+  background-color: #f3f3f3;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  color: #d13693;
+  font-weight: bold;
+  font-size: 1.2rem;
+  position: relative;
 }
+
+.noticia-info {
+  padding-bottom: 1.2rem;
+}
+
 
 .noticia-fecha {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: #666;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
+  margin-bottom: 0.25rem;
 }
 
 .noticia-titulo {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
-  margin: 0.5rem 0;
-  color: #000;
+  margin-bottom: 0.5rem;
 }
 
 .noticia-descripcion {
   font-size: 0.9rem;
   color: #333;
-  flex-grow: 1;
 }
 
 .noticia-leer-mas {
-  font-size: 0.85rem;
+  display: inline-block;
   margin-top: 1rem;
-  color: #53107F;
+  color: #53107f;
   font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-/* MODAL */
+/* ======== Modal Noticia ======== */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .modal {
   background: white;
   padding: 2rem;
-  max-width: 700px;
-  width: 90%;
-  border-radius: 10px;
+  max-width: 900px;
+  width: 100%;
+  border-radius: 8px;
   position: relative;
   max-height: 90vh;
   overflow-y: auto;
@@ -91,24 +96,50 @@
 
 .modal-cerrar {
   position: absolute;
-  top: 1rem;
+  top: 0.5rem;
   right: 1rem;
   background: transparent;
-  font-size: 1.5rem;
   border: none;
+  font-size: 2rem;
   cursor: pointer;
+  color: #53107f;
 }
 
 .modal-img {
+  display: block;
+  margin: 0 auto 1rem auto; 
   width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 1rem;
+  max-width: 600px;
+  height: auto;
+  border-radius: 8px;
 }
 
+
 .modal-texto {
-  margin-top: 1rem;
   font-size: 1rem;
-  color: #222;
+  color: #333;
+  margin-top: 1rem;
+}
+
+/* ======== Responsive Design ======== */
+@media (min-width: 640px) {
+  .noticia-card {
+    max-width: 320px;
+  }
+
+  .modal-img {
+    width: 60%;
+    margin: 0 auto 1rem auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal {
+    padding: 3rem;
+  }
+
+  .modal-img {
+    max-height: 400px;
+    object-fit: cover;
+  }
 }

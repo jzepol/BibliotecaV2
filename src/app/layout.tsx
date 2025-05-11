@@ -1,6 +1,7 @@
 import '@/styles/main.css'
 import Header from '@/components/landing/Header'
 import Footer from '@/components/landing/Footer'
+import HorarioDesplegable from '@/components/horarios/HorarioDesplegable'
 
 import { ReactNode } from 'react'
 
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="layout-body">
         <Header />
         <main className="layout-main">{children}</main>
+        <HorarioDesplegable />
         <Footer />
       </body>
     </html>

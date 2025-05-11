@@ -37,13 +37,7 @@ export default function EventosGrid({ eventos = [], onEdit, onDelete }: EventosG
           <div className="card-actions">
             <button
               onClick={() =>
-                onEdit({
-                  ...evento,
-                  fecha:
-                    typeof evento.fecha === 'string'
-                      ? evento.fecha
-                      : evento.fecha.toISOString(), // 👈 aseguramos que sea string
-                })
+                onEdit(evento)
               }
             >
               Editar

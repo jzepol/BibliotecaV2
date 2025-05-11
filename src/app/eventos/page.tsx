@@ -1,6 +1,7 @@
+export const dynamic = 'force-dynamic'
 import { obtenerEventos } from '@/services/eventos'
 import EventoCard from '@/components/eventos/EventosCard'
-import '@/styles/EventosCard.css'
+import '@/styles/EventosPage.css'
 
 export default async function EventosPage() {
   const eventos = await obtenerEventos()

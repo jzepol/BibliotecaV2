@@ -52,3 +52,15 @@ export async function eliminarTaller(id: number) {
     where: { id },
   })
 }
+export async function obtenerTalleresProximos() {
+  const hoy = new Date()
+  return await prisma.taller.findMany({
+    where: {
+      fecha: {
+        gte: hoy,
+      },
+    },
+    orderBy: { fecha: 'asc' },
+  })
+}
+

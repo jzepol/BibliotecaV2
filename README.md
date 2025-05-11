@@ -52,7 +52,7 @@ npm install -D eslint eslint-config-next
 npm install -D react-icons
 npm install jsonwebtoken
 npm install bcrypt
-
+npm install --save-dev @types/file-saver
 
 ## 🔐 Variables necesarias (.env)
 

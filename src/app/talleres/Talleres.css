@@ -9,6 +9,7 @@
 .talleres-titulo {
   text-align: center;
   font-size: 2rem;
+  font-weight: bold;
   color: #53107F;
   margin-bottom: 2rem;
 }
@@ -19,57 +20,75 @@
   gap: 2rem;
 }
 
+/* ===== Tarjeta Taller ===== */
 .taller-card {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
 .taller-card:hover {
-  transform: translateY(-4px);
+  transform: scale(1.02);
 }
 
 .taller-imagen {
   width: 100%;
-  height: 200px;
+  height: 500px;
   object-fit: cover;
+  display: block;
 }
 
 .taller-imagen-placeholder {
   width: 100%;
   height: 200px;
-  background: #f0f0f0;
+  background: #f3f3f3;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #888;
+  color: #d13693;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
+/* ===== Contenido Taller ===== */
 .taller-info {
   padding: 1rem;
 }
 
 .taller-info h2 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
   color: #53107F;
   margin-bottom: 0.5rem;
 }
 
 .taller-fecha-hora {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #666;
   margin-bottom: 0.3rem;
 }
 
 .taller-facilitador {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: bold;
-  margin-bottom: 0.6rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Ver más ===== */
+details summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #53107F;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+details[open] summary {
+  margin-bottom: 0.5rem;
 }
 
 .taller-descripcion {
@@ -79,13 +98,19 @@
   line-height: 1.4;
 }
 
-details summary {
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: #53107F;
-  font-weight: bold;
-}
+/* ===== Responsive ajustes adicionales ===== */
+@media (max-width: 480px) {
+  .talleres-container {
+    padding: 1rem;
+  }
 
-details[open] summary {
-  margin-bottom: 0.5rem;
+  .taller-info h2 {
+    font-size: 1rem;
+  }
+
+  .taller-fecha-hora,
+  .taller-facilitador,
+  .taller-descripcion {
+    font-size: 0.85rem;
+  }
 }

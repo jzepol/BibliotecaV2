@@ -1,4 +1,9 @@
+# *
 User-agent: *
-Disallow: /dashboard
+Allow: /
 
+# Host
+Host: https://biblioaguero.com.ar
+
+# Sitemaps
 Sitemap: https://biblioaguero.com.ar/sitemap.xml

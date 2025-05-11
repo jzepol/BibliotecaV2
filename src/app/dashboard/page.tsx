@@ -41,7 +41,11 @@ export default function DashboardPage() {
   const cargarEventos = async () => {
     const res = await fetch('/api/eventos/all')
     const data: Evento[] = await res.json()
-    setEventos(data)
+    const eventosTransformados: Evento[] = data.map((e) => ({
+      ...e,
+      fecha: new Date(e.fecha),
+    }))
+    setEventos(eventosTransformados)
   }
 
   const cargarTalleres = async () => {
@@ -71,6 +75,13 @@ export default function DashboardPage() {
     if (activeTab === 'talleres') cargarTalleres()
   }, [activeTab])
 
+  const handleEditarEvento = (evento: Evento) => {
+    setEventoEditado({
+      ...evento,
+      fecha: new Date(evento.fecha), // aseguro que sea tipo Date
+    })
+  }
+
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-title">Panel de administración</h1>
@@ -90,12 +101,33 @@ export default function DashboardPage() {
           </>
         ) : activeTab === 'eventos' ? (
           <>
-            <EventoForm eventoEditado={eventoEditado} onEventoGuardado={cargarEventos} />
-            <EventosGrid eventos={eventos} onEdit={setEventoEditado} onDelete={eliminarEvento} />
+           <EventoForm
+  eventoEditado={
+    eventoEditado
+      ? {
+          ...eventoEditado,
+          fecha: eventoEditado.fecha.toISOString().split('T')[0], // convierte a YYYY-MM-DD
+        }
+      : undefined
+  }
+  onEventoGuardado={cargarEventos}
+/>
+
+            <EventosGrid eventos={eventos} onEdit={handleEditarEvento} onDelete={eliminarEvento} />
           </>
         ) : activeTab === 'talleres' ? (
           <>
-            <TallerForm tallerEditado={tallerEditado} onTallerGuardado={cargarTalleres} />
+            <TallerForm
+  tallerEditado={
+    tallerEditado
+      ? {
+          ...tallerEditado,
+          fecha: tallerEditado.fecha.toISOString().split('T')[0], 
+        }
+      : undefined
+  }
+  onTallerGuardado={cargarTalleres}
+/>
             <TalleresGrid talleres={talleres} onEdit={setTallerEditado} onDelete={eliminarTaller} />
           </>
         ) : (

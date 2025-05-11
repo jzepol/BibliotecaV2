@@ -17,7 +17,8 @@
   z-index: 1;
 }
 .hero-content,
-.eventos-hero {
+.eventos-hero,
+.talleres-hero {
   position: relative;
   z-index: 2;
 }
@@ -87,8 +88,9 @@
   }
 }
 
-/* EVENTOS HERO */
-.eventos-hero {
+/* SECCIONES DE EVENTOS Y TALLERES */
+.eventos-hero,
+.talleres-hero {
   margin-top: 3rem;
   text-align: center;
 }
@@ -100,13 +102,18 @@
 }
 .eventos-carrusel {
   display: flex;
-  justify-content: center;
   overflow-x: auto;
-  gap: 1.25rem;
-  padding: 1rem 0;
+  gap: 1rem;
+  padding: 1rem;
+
+  justify-content: center; /* Centrado en desktop */
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
+
+
+
 .eventos-carrusel::-webkit-scrollbar {
   height: 6px;
 }
@@ -115,9 +122,8 @@
   border-radius: 999px;
 }
 
-/* EVENTO CARD EN HERO */
+/* TARJETAS DE EVENTO Y TALLER */
 .evento-card {
-  flex: 0 0 auto;
   width: 250px;
   background-color: #fff;
   border-radius: 12px;
@@ -125,18 +131,19 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   position: relative;
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  
 }
-
 .evento-card img,
 .evento-imagen {
   width: 100%;
-  height: 160px;
+  height: 260px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 0.75rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
-
 .evento-imagen-placeholder {
   background-color: #f2f2f2;
   color: #d31670;
@@ -148,31 +155,27 @@
   border-radius: 8px;
   margin-bottom: 0.75rem;
 }
-
 .evento-fecha {
   font-size: 0.85rem;
   color: #555;
 }
-
 .evento-titulo {
   font-size: 1.05rem;
   color: #53107f;
   font-weight: bold;
   margin: 0.5rem 0;
 }
-
 .evento-descripcion {
   font-size: 0.9rem;
   color: #333;
   margin-bottom: 0.5rem;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
 }
 
-/* ESTADO DEL EVENTO */
+/* ETIQUETAS DE ESTADO */
 .evento-estado {
   position: absolute;
   top: 10px;
@@ -192,6 +195,8 @@
 .evento-estado.finalizado {
   background-color: #d32f2f;
 }
+
+/* BOTONES */
 .evento-button {
   background-color: #FEC10B;
   color: #53107F;
@@ -203,6 +208,11 @@
   margin-top: 1rem;
   display: inline-block;
 }
+.evento-button:hover {
+  background-color: #ff3bef;
+  color: white;
+}
+
 /* BOTÓN FLOTANTE WHATSAPP */
 .whatsapp-float {
   position: fixed;
@@ -223,11 +233,14 @@
   background-color: #128c7e;
 }
 
+/* RESPONSIVE CARRUSELES */
 @media (max-width: 768px) {
   .eventos-carrusel {
+    justify-content: flex-start;
     padding: 0.5rem 0;
     gap: 0.75rem;
   }
+}
 
   .evento-card {
     width: 210px;
@@ -237,4 +250,16 @@
   .evento-descripcion {
     font-size: 0.85rem;
   }
+
+.evento-leer-mas {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #53107F;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.evento-leer-mas:hover {
+  color: #d31670;
 }

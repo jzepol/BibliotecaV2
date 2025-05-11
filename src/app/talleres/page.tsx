@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { obtenerTalleres } from '@/services/talleres'
 import './Talleres.css'
 

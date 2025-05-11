@@ -11,7 +11,7 @@ export async function crearNoticia(
     data: {
       titulo,
       contenido,
-      imagenUrl,
+      imagenUrl: imagenUrl ?? '',
     },
   })
 }
