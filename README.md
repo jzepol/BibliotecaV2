@@ -66,7 +66,7 @@ CLOUDINARY_API_SECRET=secreto
 
 ##📝 Pendientes / ideas futuras
 Envío automático de recordatorios de pago por mail a asociados activos
-
+Agregar link de mercadopago
 
 
 

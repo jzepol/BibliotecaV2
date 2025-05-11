@@ -113,10 +113,12 @@ export default function Hero() {
                 </p>
                 <h3 className="evento-titulo">{evento.titulo}</h3>
                 <p className="evento-descripcion">
-                  {evento.descripcion.length > 90
-                    ? evento.descripcion.slice(0, 90) + '...'
-                    : evento.descripcion}
-                </p>
+  {evento.descripcion.length > 90
+    ? evento.descripcion.slice(0, 90) + '...'
+    : evento.descripcion}
+</p>
+<a href="/eventos" className="evento-leer-mas">Ver más</a>
+
               </div>
             ))}
           </div>
