@@ -79,15 +79,7 @@
     opacity: 0.1;
 }
 
-.hero-separator {
-    width: 100% !important;
-    height: 2px !important;
-    display: block !important;
-    background: #53107F !important;
-    opacity: 1 !important;
-    margin: 2.5rem 0 2rem 0 !important;
-    padding-top: 2rem !important;
-}
+
 
 @media (max-width: 768px) {
     .hero {

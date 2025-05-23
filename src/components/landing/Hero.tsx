@@ -6,8 +6,13 @@ import useHeroData from '@/hooks/useHeroData'
 import HeroContent from './HeroContent'
 import HeroEventos from './HeroEventos'
 import HeroTalleres from './HeroTalleres'
-import OrganizacionesAmigas from '../OrganizacionesAmigas/OrganizacionesAmigas'
+import dynamic from 'next/dynamic'
 import HeroWhatsapp from './HeroWhatsapp'
+
+const OrganizacionesAmigas = dynamic(
+  () => import('../OrganizacionesAmigas/OrganizacionesAmigas'),
+  { ssr: false, loading: () => <div>Cargando organizaciones...</div> }
+)
 
 export default function Hero() {
   const { eventos, talleres, loading } = useHeroData()

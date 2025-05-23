@@ -4,14 +4,16 @@ import { useEffect, useState } from 'react'
 import NoticiaForm from '@/components/forms/NoticiaForm'
 import EventoForm from '@/components/forms/EventoForm'
 import TallerForm from '@/components/forms/TallerForm'
-import NoticiasGrid from '@/components/dashboard/NoticiasGrid'
-import EventosGrid from '@/components/dashboard/EventosGrid'
-import TalleresGrid from '@/components/dashboard/TalleresGrid'
-import AsociadosGrid from '@/components/dashboard/AsociadosGrid'
+import dynamic from 'next/dynamic'
 import { Noticia, Evento, Taller } from '@prisma/client'
 import '@/styles/Dashboard.css'
+import TalleresGrid from '@/components/dashboard/TalleresGrid'
+import AsociadosGrid from '@/components/dashboard/AsociadosGrid'
 
 type NoticiaApi = Omit<Noticia, 'imagenUrl'> & { imagenUrl: string | null }
+
+const NoticiasGrid = dynamic(() => import('@/components/dashboard/NoticiasGrid'), { ssr: false, loading: () => <div>Cargando noticias...</div> })
+const EventosGrid = dynamic(() => import('@/components/dashboard/EventosGrid'), { ssr: false, loading: () => <div>Cargando eventos...</div> })
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState<'noticias' | 'eventos' | 'talleres' | 'asociados'>('noticias')
