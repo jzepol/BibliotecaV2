@@ -33,6 +33,7 @@ export default function Header() {
               <Link href="/institucionalidad/rincon-julia">Rincón Julia R. Biscontini</Link>
               <Link href="/institucionalidad/comision-directiva">Comisión Directiva</Link>
               <Link href="/institucionalidad/horarios">Horarios de Atención</Link>
+              <Link href="/institucionalidad/estudiantesenelbarrio">Estudiantes en el Barrio</Link>
             </div>
           </div>
           <Link href="/eventos">Eventos</Link>

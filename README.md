@@ -1,143 +1,142 @@
 # 📚 Biblioteca Popular Antonio E. Agüero – Web Oficial
 
-Este proyecto es una aplicación web para la gestión y difusión de eventos, noticias y asociación de la Biblioteca Popular Antonio Esteban Agüero de Villa Mercedes, San Luis.
+Este proyecto es una aplicación web moderna para la gestión y difusión de eventos, noticias y asociación de la Biblioteca Popular Antonio Esteban Agüero de Villa Mercedes, San Luis.
 
----
+## 🌟 Características Principales
 
-## 🚀 Tecnologías utilizadas
+- Sistema completo de gestión de biblioteca
+- Panel administrativo intuitivo
+- Gestión de asociados y membresías
+- Publicación de noticias y eventos
+- Formulario de asociación inteligente
+- Optimización SEO
+- Diseño responsivo y accesible
+- Integración con Cloudinary para gestión de imágenes
 
-- [Next.js 15](https://nextjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [CSS]
-- [Prisma ORM](https://www.prisma.io/)
-- [PostgreSQL](https://www.postgresql.org/)
-- Autenticación con JWT
+## 🚀 Tecnologías
 
----
+### Frontend
+- [Next.js 15](https://nextjs.org/) - Framework React moderno
+- [TypeScript](https://www.typescriptlang.org/) - Tipado estático
+- [React Icons](https://react-icons.github.io/react-icons/) - Iconografía
+- [React Dropzone](https://react-dropzone.js.org/) - Manejo de archivos
 
-## 📁 Estructura principal
+### Backend
+- [Prisma ORM](https://www.prisma.io/) - ORM moderno
+- [PostgreSQL](https://www.postgresql.org/) - Base de datos
+- [JWT](https://jwt.io/) - Autenticación
+- [Bcrypt](https://github.com/dcodeIO/bcrypt.js) - Encriptación
+- [Cloudinary](https://cloudinary.com/) - Gestión de imágenes
 
-src/ ├── app/ # Páginas con App Router ├── components/ # Componentes reutilizables ├── services/ # Conexiones a Prisma public/ # Archivos estáticos prisma/ # Modelos y migraciones
+### Herramientas de Desarrollo
+- ESLint - Linting
+- TypeScript - Tipado estático
+- Next-Sitemap - Generación de sitemap
 
+## 🛠️ Instalación
 
----
-
-## 🧠 Funcionalidades
-
-- ✅ Sistema de login/register (solo backend)
-- ✅ Dashboard interno para publicar Noticias y Eventos
-- ✅ Sección pública de Noticias y Eventos
-- ✅ Formulario de Asociación con campos condicionales
-- ✅ Sistema modular y escalable
-- ✅ Estilo institucional basado en identidad visual
-- ✅ Institucionalidad https://bibliotecaurquiza.org.ar/bibliotecas-populares/ 
-- ✅ Panel con gestión completa de asociados
-- ✅ Subida de imagen a noticias y eventos
-- ✅ Soporte multiusuario y permisos
-- ✅ Optimización SEO
----
-
-## 🛠️ Scripts útiles
-
+1. Clona el repositorio:
 ```bash
-npm install          # Instala las dependencias
-npm run dev          # Inicia el servidor en desarrollo
-npx prisma migrate dev --name init    # Aplica migraciones
-npx prisma studio    # Accede visualmente a la base de dato
+git clone [URL_DEL_REPOSITORIO]
+cd bibliotecav2
+```
 
-## necesarias
-npm install -D typescript @types/react @types/node
-npm install -D prisma
-npm install -D tailwindcss postcss autoprefixer
-npm install -D eslint eslint-config-next
-npm install -D react-icons
-npm install jsonwebtoken
-npm install bcrypt
-npm install --save-dev @types/file-saver
+2. Instala las dependencias:
+```bash
+npm install
+```
 
-## 🔐 Variables necesarias (.env)
-
+3. Configura las variables de entorno:
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+```env
 DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/nombre_basedatos
 JWT_SECRET=clave_supersecreta
 CLOUDINARY_CLOUD_NAME=nombre_cloud
 CLOUDINARY_API_KEY=clave
 CLOUDINARY_API_SECRET=secreto
+```
 
+4. Inicializa la base de datos:
+```bash
+npx prisma migrate dev --name init
+```
 
-##📝 Pendientes / ideas futuras
-Envío automático de recordatorios de pago por mail a asociados activos
-Agregar link de mercadopago
+## 🚀 Scripts Disponibles
 
+```bash
+npm run dev          # Inicia el servidor de desarrollo
+npm run build        # Construye la aplicación para producción
+npm run start        # Inicia el servidor de producción
+npm run lint         # Ejecuta el linter
+npx prisma studio    # Abre la interfaz visual de Prisma
+```
 
+## 📁 Estructura del Proyecto
 
-
-_________________________
-##Estructura del proyecto
+```
 BIBLIOTECAV2/
 ├── prisma/                        # Esquema y migraciones Prisma
-│   ├── schema.prisma
-│   └── migrations/
-│
 ├── public/                        # Archivos estáticos
-│   └── img/
-│       ├── logos, iconos, fondo, etc.
-│
 ├── src/
 │   ├── app/                       # Rutas con App Router
-│   │   ├── login/                 # Página de inicio de sesión
-│   │   ├── dashboard/            # Panel administrativo
-│   │   ├── asociarse/            # Formulario público de socios
-│   │   ├── noticias/             # Página de noticias
-│   │   ├── eventos/              # Página de eventos
-│   │   ├── talleres/             # Página de talleres
-│   │   ├── institucionalidad/
-│   │   │   ├── bibliotecas-populares/
-│   │   │   ├── comision-directiva/
-│   │   │   ├── horarios/
-│   │   │   ├── infantil/
-│   │   │   └── rincon-julia/
-│   │   └── api/                  # Rutas API REST
-│   │       ├── auth/             # Login y registro
-│   │       │   ├── login/
-│   │       │   └── register/
-│   │       ├── asociados/        # Gestión de socios
-│   │       ├── eventos/          # Gestión de eventos
-│   │       ├── noticias/         # Gestión de noticias
-│   │       ├── talleres/         # Gestión de talleres
-│   │       └── upload/           # Subida de imágenes
-│
-│   ├── components/               # Componentes reutilizables
-│   │   ├── dashboard/
-│   │   ├── eventos/
-│   │   ├── forms/
-│   │   ├── asociados/
-│   │   ├── noticias/
-│   │   └── landing/
-│
-│   ├── services/                 # Acceso a datos con Prisma
-│   │   ├── auth.ts
-│   │   ├── asociados.ts
-│   │   ├── eventos.ts
-│   │   ├── noticias.ts
-│   │   └── talleres.ts
-│
-│   ├── styles/                   # CSS modularizado
-│   │   └── *.css
-│
-│   └── lib/                      # Utilidades generales
-│       ├── cloudinary.ts
-│       ├── getUserFromToken.ts
-│       ├── prisma.ts
-│       └── withAuth.ts
-│
-├── .env                          # Variables de entorno
-├── next.config.ts                # Configuración Next.js
-├── middleware.ts                 # Middleware de autenticación
-├── tsconfig.json                 # Configuración TypeScript
-├── package.json
-└── README.md
+│   ├── components/                # Componentes reutilizables
+│   ├── services/                  # Servicios y lógica de negocio
+│   ├── styles/                    # Estilos CSS
+│   └── lib/                       # Utilidades y configuraciones
+├── .env                           # Variables de entorno
+└── [archivos de configuración]
+```
 
+## 🔐 Autenticación y Seguridad
 
+- Sistema de autenticación basado en JWT
+- Encriptación de contraseñas con bcrypt
+- Middleware de protección de rutas
+- Validación de datos en formularios
+- Manejo seguro de archivos
 
-##Sitio creado y mantenido con ❤️ para la comunidad de la Biblioteca Popular Antonio Esteban Agüero. 
-By jzepol
+## 📱 Características del Dashboard
+
+- Gestión completa de asociados
+- Publicación de noticias y eventos
+- Subida y gestión de imágenes
+- Sistema de permisos por usuario
+- Exportación de datos a Excel
+- Gestión de talleres y actividades
+
+## 🔄 Próximas Mejoras
+
+- [ ] Integración con MercadoPago para pagos de membresía
+- [ ] Sistema de notificaciones por email
+- [ ] Recordatorios automáticos de pagos
+- [ ] Panel de estadísticas y reportes
+- [ ] Sistema de reserva de libros
+- [ ] Catálogo digital de libros
+
+## 🤝 Contribución
+
+Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
+
+1. Haz un Fork del proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia ISC.
+
+## 👥 Autores
+
+- **jzepol** - *Desarrollo y mantenimiento*
+
+## 🙏 Agradecimientos
+
+- Biblioteca Popular Antonio Esteban Agüero
+- Comunidad de Villa Mercedes
+- Contribuidores y colaboradores
+
+---
+
+Sitio creado y mantenido con ❤️ para la comunidad de la Biblioteca Popular Antonio Esteban Agüero.

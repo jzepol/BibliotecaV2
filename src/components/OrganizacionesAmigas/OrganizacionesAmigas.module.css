@@ -1,0 +1,193 @@
+.carouselContainer {
+    width: 100%;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1.2rem;
+    background-color: transparent;
+    border-radius: 12px;
+    box-shadow: none;
+    position: relative;
+    z-index: 2;
+}
+
+.titulo {
+    text-align: center;
+    color: #53107F;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.3rem;
+}
+
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 260px;
+}
+
+.slideContainer {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.imageContainer {
+    width: 300px;
+    height: 180px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0.7rem;
+    box-shadow: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.nombre {
+    color: #53107F;
+    font-size: 1.1rem;
+    margin: 0.3rem 0;
+    font-weight: bold;
+}
+
+.descripcion {
+    color: #333;
+    font-size: 0.95rem;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.4;
+}
+
+.carouselButton {
+    background-color: #53107F;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.carouselButton:hover {
+    background-color: #ff3bef;
+    transform: scale(1.08);
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    transform: scale(1.15);
+}
+
+.activeDot {
+    background-color: #53107F;
+    transform: scale(1.15);
+}
+
+@media (max-width: 768px) {
+    .carouselContainer {
+        max-width: 98vw;
+        margin: 1rem auto;
+        padding: 0.7rem;
+    }
+    .carousel {
+        min-height: 180px;
+    }
+    .slideContainer {
+        height: 150px;
+    }
+    .imageContainer {
+        width: 192px;
+        height: 108px;
+    }
+    .nombre {
+        font-size: 1rem;
+    }
+    .descripcion {
+        font-size: 0.85rem;
+        padding: 0 0.5rem;
+    }
+    .carouselButton {
+        width: 26px;
+        height: 26px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .carouselContainer {
+        padding: 0.4rem;
+    }
+    .carousel {
+        min-height: 120px;
+    }
+    .slideContainer {
+        height: 90px;
+    }
+    .imageContainer {
+        width: 108px;
+        height: 60px;
+    }
+    .nombre {
+        font-size: 0.9rem;
+    }
+    .descripcion {
+        font-size: 0.75rem;
+    }
+    .carouselButton {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+} 

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 export const dynamic = 'force-dynamic'
 import { obtenerTalleres } from '@/services/talleres'
 import './Talleres.css'
@@ -12,7 +13,7 @@ export default async function TalleresPage() {
         {talleres.map((taller) => (
           <div key={taller.id} className="taller-card">
             {taller.imagenUrl ? (
-              <img src={taller.imagenUrl} alt={taller.titulo} className="taller-imagen" />
+              <Image src={taller.imagenUrl} alt={taller.titulo} className="taller-imagen" width={400} height={250} />
             ) : (
               <div className="taller-imagen-placeholder">Imagen no disponible</div>
             )}
