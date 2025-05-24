@@ -37,26 +37,26 @@ model Evento {
   estado      EstadoEvento  @default(PROXIMAMENTE)
 }
 
-
-model Asociado {
-  id                 Int      @id @default(autoincrement())
-  email              String   @unique
-  apellido           String
-  nombre             String
-  dni                Int
-  fechaNacimiento    DateTime
-  direccion          String
-  categoria          Categoria
-  escuela            String?   // solo si es juvenil
-  curso              String?   // solo si es juvenil
-  comentario         String?
-  fechaInscripcion   DateTime  @default(now())
-}
-
 enum Categoria {
   ACTIVO
   JUVENIL
   CONTRIBUYENTE
+}
+
+model Asociado {
+  id              Int      @id @default(autoincrement())
+  email           String   @unique
+  apellido        String
+  nombre          String
+  dni             Int      @unique
+  telefono        BigInt?
+  fechaNacimiento DateTime
+  direccion       String
+  categoria       Categoria
+  escuela         String?
+  curso           String?
+  comentario      String?
+  fechaInscripcion DateTime @default(now())
 }
 
 model Taller {

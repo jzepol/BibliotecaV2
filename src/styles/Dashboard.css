@@ -47,3 +47,20 @@
   max-width: 100%;
   padding: 0;
 }
+
+.dashboard-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.dashboard-nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.dashboard-nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

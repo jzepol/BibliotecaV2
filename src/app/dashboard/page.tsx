@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 import { Noticia, Evento, Taller } from '@prisma/client'
 import '@/styles/Dashboard.css'
 import TalleresGrid from '@/components/dashboard/TalleresGrid'
-import AsociadosGrid from '@/components/dashboard/AsociadosGrid'
+import Link from 'next/link'
 
 type NoticiaApi = Omit<Noticia, 'imagenUrl'> & { imagenUrl: string | null }
 
@@ -16,7 +16,7 @@ const NoticiasGrid = dynamic(() => import('@/components/dashboard/NoticiasGrid')
 const EventosGrid = dynamic(() => import('@/components/dashboard/EventosGrid'), { ssr: false, loading: () => <div>Cargando eventos...</div> })
 
 export default function DashboardPage() {
-  const [activeTab, setActiveTab] = useState<'noticias' | 'eventos' | 'talleres' | 'asociados'>('noticias')
+  const [activeTab, setActiveTab] = useState<'noticias' | 'eventos' | 'talleres'>('noticias')
 
   const [noticias, setNoticias] = useState<Noticia[]>([])
   const [noticiaEditada, setNoticiaEditada] = useState<Noticia | undefined>()
@@ -92,10 +92,10 @@ export default function DashboardPage() {
         <button className={`dashboard-tab-button ${activeTab === 'noticias' ? 'active' : ''}`} onClick={() => setActiveTab('noticias')}>Novedades</button>
         <button className={`dashboard-tab-button ${activeTab === 'eventos' ? 'active' : ''}`} onClick={() => setActiveTab('eventos')}>Eventos</button>
         <button className={`dashboard-tab-button ${activeTab === 'talleres' ? 'active' : ''}`} onClick={() => setActiveTab('talleres')}>Talleres</button>
-        <button className={`dashboard-tab-button ${activeTab === 'asociados' ? 'active' : ''}`} onClick={() => setActiveTab('asociados')}>Asociados</button>
+        <Link href="/dashboard/asociados" className="dashboard-tab-button">Asociados</Link>
       </div>
 
-      <div className={`dashboard-form ${activeTab === 'asociados' ? 'form-fullwidth' : ''}`}>
+      <div className="dashboard-form">
         {activeTab === 'noticias' ? (
           <>
             <NoticiaForm noticiaEditada={noticiaEditada} onNoticiaGuardada={cargarNoticias} />
@@ -104,36 +104,33 @@ export default function DashboardPage() {
         ) : activeTab === 'eventos' ? (
           <>
            <EventoForm
-  eventoEditado={
-    eventoEditado
-      ? {
-          ...eventoEditado,
-          fecha: eventoEditado.fecha.toISOString().split('T')[0], // convierte a YYYY-MM-DD
-        }
-      : undefined
-  }
-  onEventoGuardado={cargarEventos}
-/>
-
+              eventoEditado={
+                eventoEditado
+                  ? {
+                      ...eventoEditado,
+                      fecha: eventoEditado.fecha.toISOString().split('T')[0], // convierte a YYYY-MM-DD
+                    }
+                  : undefined
+              }
+              onEventoGuardado={cargarEventos}
+            />
             <EventosGrid eventos={eventos} onEdit={handleEditarEvento} onDelete={eliminarEvento} />
           </>
-        ) : activeTab === 'talleres' ? (
+        ) : (
           <>
             <TallerForm
-  tallerEditado={
-    tallerEditado
-      ? {
-          ...tallerEditado,
-          fecha: tallerEditado.fecha.toISOString().split('T')[0], 
-        }
-      : undefined
-  }
-  onTallerGuardado={cargarTalleres}
-/>
+              tallerEditado={
+                tallerEditado
+                  ? {
+                      ...tallerEditado,
+                      fecha: tallerEditado.fecha.toISOString().split('T')[0], 
+                    }
+                  : undefined
+              }
+              onTallerGuardado={cargarTalleres}
+            />
             <TalleresGrid talleres={talleres} onEdit={setTallerEditado} onDelete={eliminarTaller} />
           </>
-        ) : (
-          <AsociadosGrid />
         )}
       </div>
     </div>
