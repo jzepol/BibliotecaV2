@@ -92,7 +92,9 @@ export default function DashboardPage() {
         <button className={`dashboard-tab-button ${activeTab === 'noticias' ? 'active' : ''}`} onClick={() => setActiveTab('noticias')}>Novedades</button>
         <button className={`dashboard-tab-button ${activeTab === 'eventos' ? 'active' : ''}`} onClick={() => setActiveTab('eventos')}>Eventos</button>
         <button className={`dashboard-tab-button ${activeTab === 'talleres' ? 'active' : ''}`} onClick={() => setActiveTab('talleres')}>Talleres</button>
-        <Link href="/dashboard/asociados" className="dashboard-tab-button">Asociados</Link>
+                <Link href="/dashboard/asociados" className="dashboard-tab-button">Socixs</Link>
+        <Link href="/dashboard/catalogo" className="dashboard-tab-button">Catálogo</Link>
+        <Link href="/dashboard/prestamos" className="dashboard-tab-button">Prestamo</Link>
       </div>
 
       <div className="dashboard-form">

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import '@/styles/components/AsociadosGrid.css'
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
+import Link from 'next/link'
 
 interface Asociado {
   id: number
@@ -24,6 +25,8 @@ interface Asociado {
 export default function AsociadosGrid() {
   const [asociados, setAsociados] = useState<Asociado[]>([])
   const [filtro, setFiltro] = useState('')
+  const [paginaActual, setPaginaActual] = useState(0)
+  const elementosPorPagina = 10
   const [asociadoEditando, setAsociadoEditando] = useState<Asociado | null>(null)
 
   useEffect(() => {
@@ -32,25 +35,36 @@ export default function AsociadosGrid() {
       const data = await res.json()
       setAsociados(data)
     }
-
     cargarAsociados()
   }, [])
 
-  const filtrados = asociados.filter((a) =>
-    `${a.apellido} ${a.nombre}`.toLowerCase().includes(filtro.toLowerCase()) ||
-    a.dni.toString().includes(filtro) ||
-    (a.telefono ? a.telefono.toString().includes(filtro) : false)
-  )
+  const filtrados = Array.isArray(asociados)
+    ? asociados.filter((a) => {
+        const nombreCompleto = `${a.apellido ?? ''} ${a.nombre ?? ''}`.toLowerCase()
+        const dniStr = a.dni?.toString?.() ?? ''
+        const telefonoStr = typeof a.telefono === 'bigint' || typeof a.telefono === 'number'
+          ? a.telefono.toString()
+          : ''
+        return (
+          nombreCompleto.includes(filtro.toLowerCase()) ||
+          dniStr.includes(filtro) ||
+          telefonoStr.includes(filtro)
+        )
+      })
+    : []
+
+  const totalPaginas = Math.ceil(filtrados.length / elementosPorPagina)
 
   const exportarCSV = () => {
-    const encabezado = ['Apellido','Nombre','DNI','Teléfono','Email','Dirección','Fecha Nacimiento','Inscripto el','Categoría','Escuela','Curso','Comentario']
+    const encabezado = ['ID','Apellido','Nombre','DNI','Teléfono','Email','Dirección','Fecha Nacimiento','Inscripto el','Categoría','Escuela','Curso','Comentario']
     const filas = filtrados.map(a => [
-      `"${a.apellido}"`,
-      `"${a.nombre}"`,
+      a.id,
+      a.apellido,
+      a.nombre,
       a.dni,
       a.telefono ? a.telefono.toString() : '',
       a.email,
-      `"${a.direccion}"`,
+      a.direccion,
       new Date(a.fechaNacimiento).toLocaleDateString(),
       new Date(a.fechaInscripcion).toLocaleDateString(),
       a.categoria,
@@ -74,6 +88,7 @@ export default function AsociadosGrid() {
     const worksheet = workbook.addWorksheet('Asociados')
 
     worksheet.columns = [
+      { header: 'ID', key: 'id' },
       { header: 'Apellido', key: 'apellido' },
       { header: 'Nombre', key: 'nombre' },
       { header: 'DNI', key: 'dni' },
@@ -81,64 +96,40 @@ export default function AsociadosGrid() {
       { header: 'Email', key: 'email' },
       { header: 'Dirección', key: 'direccion' },
       { header: 'Fecha Nacimiento', key: 'fechaNacimiento' },
+      { header: 'Inscripto el', key: 'fechaInscripcion' },
       { header: 'Categoría', key: 'categoria' },
       { header: 'Escuela', key: 'escuela' },
       { header: 'Curso', key: 'curso' },
       { header: 'Comentario', key: 'comentario' }
     ]
 
-    // Agregar validaciones
-    worksheet.getColumn('dni').eachCell((cell) => {
-      cell.numFmt = '0';
-    });
+    worksheet.insertRow(1, ['INSTRUCCIONES DE IMPORTACIÓN'])
+    worksheet.mergeCells('A1:M1')
+    worksheet.getCell('A1').font = { bold: true, color: { argb: 'FF0000' } }
+    worksheet.getCell('A1').alignment = { horizontal: 'center' }
 
-    worksheet.getColumn('telefono').eachCell((cell) => {
-      cell.numFmt = '0';
-    });
-
-    worksheet.getColumn('fechaNacimiento').eachCell((cell) => {
-      cell.numFmt = 'dd/mm/yyyy';
-    });
-
-    // Agregar lista desplegable para categoría
-    const categoriaValidation = {
-      type: 'list' as const,
-      allowBlank: true,
-      formulae: ['"ACTIVO,JUVENIL,CONTRIBUYENTE"']
-    };
-    worksheet.getColumn('categoria').eachCell((cell) => {
-      cell.dataValidation = categoriaValidation;
-    });
-
-    // Agregar instrucciones en la primera fila
-    worksheet.insertRow(1, ['INSTRUCCIONES DE IMPORTACIÓN']);
-    worksheet.mergeCells('A1:K1');
-    worksheet.getCell('A1').font = { bold: true, color: { argb: 'FF0000' } };
-    worksheet.getCell('A1').alignment = { horizontal: 'center' };
-
-    // Agregar descripción de campos
     const descripcionCampos = [
+      'ID: (autogenerado)',
       'Apellido: Texto obligatorio',
       'Nombre: Texto obligatorio',
-      'DNI: Número obligatorio (sin puntos)',
-      'Teléfono: Número (sin puntos ni espacios)',
-      'Email: Correo electrónico válido',
+      'DNI: Número obligatorio',
+      'Teléfono: Número',
+      'Email: Email válido',
       'Dirección: Texto obligatorio',
-      'Fecha Nacimiento: Fecha en formato dd/mm/yyyy',
-      'Categoría: Seleccionar entre ACTIVO, JUVENIL o CONTRIBUYENTE',
-      'Escuela: Texto (obligatorio solo si es JUVENIL)',
-      'Curso: Texto (obligatorio solo si es JUVENIL)',
+      'Fecha Nacimiento: Formato dd/mm/yyyy',
+      'Inscripto el: Fecha',
+      'Categoría: ACTIVO/JUVENIL/CONTRIBUYENTE',
+      'Escuela: Texto (si juvenil)',
+      'Curso: Texto (si juvenil)',
       'Comentario: Texto opcional'
-    ];
+    ]
+    worksheet.insertRow(2, descripcionCampos)
+    worksheet.getRow(2).font = { italic: true }
+    worksheet.getRow(2).height = 40
 
-    worksheet.insertRow(2, descripcionCampos);
-    worksheet.getRow(2).font = { italic: true };
-    worksheet.getRow(2).height = 40;
-
-    // Ajustar el ancho de las columnas
     worksheet.columns.forEach(column => {
-      column.width = 20;
-    });
+      column.width = 20
+    })
 
     const buffer = await workbook.xlsx.writeBuffer()
     const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
@@ -148,7 +139,6 @@ export default function AsociadosGrid() {
   const eliminarAsociado = async (id: number) => {
     const confirmar = confirm('¿Estás seguro de que deseas eliminar este asociado?')
     if (!confirmar) return
-
     const res = await fetch(`/api/asociados/${id}`, { method: 'DELETE' })
     if (res.ok) {
       setAsociados(prev => prev.filter(a => a.id !== id))
@@ -159,13 +149,11 @@ export default function AsociadosGrid() {
 
   const actualizarAsociado = async () => {
     if (!asociadoEditando) return
-
     const res = await fetch(`/api/asociados/${asociadoEditando.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(asociadoEditando),
     })
-
     if (res.ok) {
       const actualizado = await res.json()
       setAsociados(prev =>
@@ -179,14 +167,19 @@ export default function AsociadosGrid() {
 
   return (
     <div className="grid-asociados">
-      <h2>Listado de Asociados</h2>
-
+      <Link href="/asociarse" className="dashboard-tab-button">Agregar Socix</Link>
+      <h2>Listado</h2>
+      
       <input
         type="text"
-        placeholder="Filtrar por nombre o DNI..."
+        placeholder="Filtrar por nombre, DNI o teléfono..."
         value={filtro}
-        onChange={(e) => setFiltro(e.target.value)}
+        onChange={(e) => {
+          setFiltro(e.target.value)
+          setPaginaActual(0)
+        }}
       />
+
       <div className="export-buttons">
         <button onClick={exportarCSV}>Exportar CSV</button>
         <button onClick={exportarExcel}>Exportar Excel</button>
@@ -196,6 +189,7 @@ export default function AsociadosGrid() {
         <table>
           <thead>
             <tr>
+              <th>ID</th>
               <th>Apellido</th>
               <th>Nombre</th>
               <th>DNI</th>
@@ -212,8 +206,9 @@ export default function AsociadosGrid() {
             </tr>
           </thead>
           <tbody>
-            {filtrados.map((a) => (
+            {filtrados.slice(paginaActual * elementosPorPagina, (paginaActual + 1) * elementosPorPagina).map((a) => (
               <tr key={a.id}>
+                <td>{a.id}</td>
                 <td>{a.apellido}</td>
                 <td>{a.nombre}</td>
                 <td>{a.dni}</td>
@@ -236,6 +231,12 @@ export default function AsociadosGrid() {
         </table>
       </div>
 
+      <div className="paginacion">
+        <button onClick={() => setPaginaActual(prev => Math.max(prev - 1, 0))} disabled={paginaActual === 0}>← Anterior</button>
+        <span>Página {paginaActual + 1} de {totalPaginas}</span>
+        <button onClick={() => setPaginaActual(prev => Math.min(prev + 1, totalPaginas - 1))} disabled={paginaActual >= totalPaginas - 1}>Siguiente →</button>
+      </div>
+
       {asociadoEditando && (
         <div className="modal-overlay" onClick={() => setAsociadoEditando(null)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -243,18 +244,7 @@ export default function AsociadosGrid() {
             <input value={asociadoEditando.apellido} onChange={e => setAsociadoEditando({ ...asociadoEditando, apellido: e.target.value })} placeholder="Apellido" />
             <input value={asociadoEditando.nombre} onChange={e => setAsociadoEditando({ ...asociadoEditando, nombre: e.target.value })} placeholder="Nombre" />
             <input value={asociadoEditando.dni} onChange={e => setAsociadoEditando({ ...asociadoEditando, dni: Number(e.target.value) })} placeholder="DNI" type="number" />
-            <input 
-              value={asociadoEditando.telefono?.toString() || ''} 
-              onChange={e => {
-                const value = e.target.value;
-                setAsociadoEditando({ 
-                  ...asociadoEditando, 
-                  telefono: value ? BigInt(value) : null 
-                });
-              }} 
-              placeholder="Teléfono" 
-              type="number" 
-            />
+            <input value={asociadoEditando.telefono?.toString() || ''} onChange={e => setAsociadoEditando({ ...asociadoEditando, telefono: e.target.value ? BigInt(e.target.value) : null })} placeholder="Teléfono" type="number" />
             <input value={asociadoEditando.email} onChange={e => setAsociadoEditando({ ...asociadoEditando, email: e.target.value })} placeholder="Email" type="email" />
             <input value={asociadoEditando.direccion} onChange={e => setAsociadoEditando({ ...asociadoEditando, direccion: e.target.value })} placeholder="Dirección" />
             <input value={new Date(asociadoEditando.fechaNacimiento).toISOString().split('T')[0]} onChange={e => setAsociadoEditando({ ...asociadoEditando, fechaNacimiento: e.target.value })} type="date" />

@@ -17,22 +17,21 @@ export async function POST(req: Request) {
       escuela,
       curso,
       comentario,
+      telefono
     } = body
 
-    if (
-      !email || !apellido || !nombre || !dni || !fechaNacimiento ||
-      !direccion || !categoria
-    ) {
+    // Validaciones básicas
+    if (!email || !apellido || !nombre || !dni || !fechaNacimiento || !direccion || !categoria) {
       return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 })
     }
+
     if (!email.includes('@')) {
       return NextResponse.json({ error: 'Email inválido' }, { status: 400 })
     }
-    
-    if (isNaN(parseInt(dni)) || dni.length < 7) {
+
+    if (isNaN(parseInt(dni)) || dni.toString().length < 7) {
       return NextResponse.json({ error: 'DNI inválido' }, { status: 400 })
     }
-    
 
     const nuevoAsociado = await crearAsociado({
       email,
@@ -45,9 +44,14 @@ export async function POST(req: Request) {
       escuela,
       curso,
       comentario,
+      telefono: telefono ? BigInt(telefono) : null
     })
 
-    return NextResponse.json(nuevoAsociado, { status: 201 })
+    return NextResponse.json({
+  ...nuevoAsociado,
+  telefono: nuevoAsociado.telefono !== null ? nuevoAsociado.telefono.toString() : null
+}, { status: 201 })
+
   } catch (error) {
     console.error(error)
     return NextResponse.json({ error: 'Error al procesar el formulario' }, { status: 500 })

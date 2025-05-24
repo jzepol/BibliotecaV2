@@ -1,12 +1,11 @@
 'use client'
 
-import AsociadosGrid from '@/components/dashboard/AsociadosGrid'
-import '@/styles/Dashboard.css'
+import CatalogoGrid from '@/components/dashboard/CatalogoGrid'
 import Link from 'next/link'
 
-export default function AsociadosPage() {
+export default function CatalogoPage() {
   return (
-    <div className="dashboard-container">
+    <main className="dashboard-catalogo">
        <div className="dashboard-navigation">
   <Link href="/dashboard" className="dashboard-tab-button">Novedades</Link>
   <Link href="/dashboard" className="dashboard-tab-button">Eventos</Link>
@@ -15,13 +14,8 @@ export default function AsociadosPage() {
   <Link href="/dashboard/catalogo" className="dashboard-tab-button">Catálogo</Link>
   <Link href="/dashboard/prestamos" className="dashboard-tab-button">Prestamo</Link>
     </div>
-      <h1 className="dashboard-title">Gestión de Socixs</h1>
-      
-      <div className="dashboard-form form-fullwidth">
-
-        <AsociadosGrid />
-
-      </div>
-    </div>
+      <h1>Gestión del Catálogo de Libros</h1>
+      <CatalogoGrid />
+    </main>
   )
-} 
+}

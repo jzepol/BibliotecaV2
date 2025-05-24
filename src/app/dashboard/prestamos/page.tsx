@@ -1,13 +1,13 @@
+// app/dashboard/prestamos/page.tsx
 'use client'
 
-import AsociadosGrid from '@/components/dashboard/AsociadosGrid'
-import '@/styles/Dashboard.css'
+import PrestamosGrid from '@/components/dashboard/PrestamosGrid'
 import Link from 'next/link'
 
-export default function AsociadosPage() {
+export default function PrestamosPage() {
   return (
-    <div className="dashboard-container">
-       <div className="dashboard-navigation">
+    <main style={{ padding: '2rem' }}>
+        <div className="dashboard-navigation">
   <Link href="/dashboard" className="dashboard-tab-button">Novedades</Link>
   <Link href="/dashboard" className="dashboard-tab-button">Eventos</Link>
   <Link href="/dashboard" className="dashboard-tab-button">Talleres</Link>
@@ -15,13 +15,7 @@ export default function AsociadosPage() {
   <Link href="/dashboard/catalogo" className="dashboard-tab-button">Catálogo</Link>
   <Link href="/dashboard/prestamos" className="dashboard-tab-button">Prestamo</Link>
     </div>
-      <h1 className="dashboard-title">Gestión de Socixs</h1>
-      
-      <div className="dashboard-form form-fullwidth">
-
-        <AsociadosGrid />
-
-      </div>
-    </div>
+      <PrestamosGrid />
+    </main>
   )
-} 
+}

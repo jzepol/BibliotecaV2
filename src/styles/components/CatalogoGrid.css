@@ -1,4 +1,6 @@
-.grid-asociados {
+/* CatalogoGrid.css */
+
+.catalogo-grid {
   width: 100%;
   max-width: 100%;
   margin: 2rem auto;
@@ -9,14 +11,14 @@
   overflow-x: auto;
 }
 
-.grid-asociados h2 {
+.catalogo-grid h2 {
   text-align: center;
   margin-bottom: 1rem;
   font-size: 1.5rem;
   color: #53107F;
 }
 
-.grid-asociados input {
+.catalogo-grid input[type="text"] {
   display: block;
   margin: 0 auto 1rem auto;
   padding: 0.5rem 1rem;
@@ -27,21 +29,6 @@
   font-size: 0.95rem;
 }
 
-.grid-asociados button {
-  background-color: #53107F;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 999px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 1rem;
-}
-
-.grid-asociados button:hover {
-  background-color: #ff3bef;
-}
-
 .tabla-scroll {
   width: 100%;
   overflow-x: auto;
@@ -50,7 +37,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 1000px; /* asegura espacio para columnas largas */
+  min-width: 1000px;
 }
 
 thead {
@@ -66,15 +53,15 @@ th, td {
 }
 
 tr:hover {
-  background-color:#ff3bef;
+  background-color: #ff3bef;
 }
 
 @media (max-width: 768px) {
-  .grid-asociados {
+  .catalogo-grid {
     padding: 1rem;
   }
 
-  .grid-asociados input {
+  .catalogo-grid input {
     width: 100%;
   }
 
@@ -108,6 +95,7 @@ tr:hover {
 .btn-accion.eliminar {
   color: #ff3bef;
 }
+
 .paginacion {
   margin-top: 1rem;
   display: flex;
@@ -115,15 +103,131 @@ tr:hover {
   gap: 1rem;
   align-items: center;
 }
+
 .paginacion button {
   padding: 0.3rem 0.8rem;
   border: 1px solid #ccc;
   background: #fff;
   cursor: pointer;
 }
+
 .paginacion button[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.modal input,
+.modal textarea,
+.modal select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.modal h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: #53107F;
+  text-align: center;
+}
+
+.modal input,
+.modal textarea,
+.modal select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.modal button {
+  padding: 0.6rem 1rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal button[type="submit"] {
+  background-color: #53107F;
+  color: #fff;
+}
+
+.modal button[type="submit"]:hover {
+  background-color: #ff3bef;
+}
+
+.modal button[type="button"] {
+  background-color: #ccc;
+  color: #000;
+  margin-left: auto;
+}
+
+.modal button[type="button"]:hover {
+  background-color: #999;
+}
+
+.btn-accion.crear {
+  background-color: #53107F;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-accion.crear:hover {
+  background-color: #ff3bef;
 }
 .dashboard-navigation {
   display: flex;

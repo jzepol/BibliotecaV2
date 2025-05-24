@@ -44,11 +44,11 @@ enum Categoria {
 }
 
 model Asociado {
-  id              Int      @id @default(autoincrement())
-  email           String   @unique
+  id              Int       @id @default(autoincrement())
+  email           String    @unique
   apellido        String
   nombre          String
-  dni             Int      @unique
+  dni             Int       @unique
   telefono        BigInt?
   fechaNacimiento DateTime
   direccion       String
@@ -57,7 +57,9 @@ model Asociado {
   curso           String?
   comentario      String?
   fechaInscripcion DateTime @default(now())
+  prestamos       Prestamo[]
 }
+
 
 model Taller {
   id           Int      @id @default(autoincrement())
@@ -68,4 +70,41 @@ model Taller {
   hora         String
   facilitador  String
   creadoEn     DateTime @default(now())
+}
+model Libro {
+  id                 Int      @id @default(autoincrement())
+  ISBN               String?  @db.VarChar(255)
+  autor              String?  @db.VarChar(255)
+  titulo             String
+  subtitulo          String?  @db.VarChar(255)
+  edicion            String?  @db.VarChar(255)
+  lugar              String?  @db.VarChar(255)
+  editorial          String?  @db.VarChar(255)
+  fechaPublicacion   String?  @db.VarChar(255)
+  extension          String?  @db.VarChar(255)
+  caracteristicas    String?  @db.VarChar(255)
+  volumen            String?  @db.VarChar(255)
+  materia            String?  @db.VarChar(255)
+  bibliotecario      String?  @db.VarChar(255)
+  cutter             String?  @db.VarChar(255)
+  prestamos          Prestamo[]
+}
+
+model Prestamo {
+  id         Int      @id @default(autoincrement())
+  asociado   Asociado @relation(fields: [asociadoId], references: [id])
+  asociadoId Int
+  libro      Libro    @relation(fields: [libroId], references: [id])
+  libroId    Int
+  estado     EstadoPrestamo
+  fechaInicio DateTime @default(now())
+  fechaFin    DateTime?
+
+  @@unique([asociadoId, libroId]) // evita duplicados
+}
+
+enum EstadoPrestamo {
+  ACTIVO
+  DEVUELTO
+  VENCIDO
 }

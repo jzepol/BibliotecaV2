@@ -42,7 +42,7 @@ export default function AsociadoForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Validaciones básicas
+    // Validaciones
     if (!formData.email.includes('@') || !formData.email.includes('.')) {
       alert('Por favor, ingresá un correo electrónico válido.')
       return
@@ -65,11 +65,17 @@ export default function AsociadoForm() {
       }
     }
 
+    // Preparamos payload compatible con JSON.stringify
+    const payload = {
+      ...formData,
+      telefono: formData.telefono !== null ? formData.telefono.toString() : null
+    }
+
     try {
       const res = await fetch('/api/asociados', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       })
 
       if (!res.ok) {
@@ -115,11 +121,11 @@ export default function AsociadoForm() {
           type="number" 
           value={formData.telefono?.toString() || ''} 
           onChange={(e) => {
-            const value = e.target.value;
+            const value = e.target.value
             setFormData({ 
               ...formData, 
               telefono: value ? BigInt(value) : null 
-            });
+            })
           }} 
         />
         <FormField label="Fecha de nacimiento" name="fechaNacimiento" type="date" value={formData.fechaNacimiento} onChange={handleChange} required />
@@ -194,4 +200,3 @@ function FormField({
     </div>
   )
 }
-

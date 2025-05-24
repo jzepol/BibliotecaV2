@@ -24,6 +24,10 @@ export default async function DashboardLayout({ children }: { children: ReactNod
           <Link href="/dashboard/asociados" className="dashboard-nav-link">
             Asociados
           </Link>
+          <Link href="/dashboard/catalogo" className="dashboard-nav-link">
+            Catalogo
+          </Link>
+
         </nav>
       </div>
       {children}
