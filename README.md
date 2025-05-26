@@ -12,6 +12,7 @@ Este proyecto es una aplicación web moderna para la gestión y difusión de eve
 - Optimización SEO
 - Diseño responsivo y accesible
 - Integración con Cloudinary para gestión de imágenes
+- [ ] Sistema de reserva de libros
 
 ## 🚀 Tecnologías
 
@@ -105,13 +106,14 @@ BIBLIOTECAV2/
 - Gestión de talleres y actividades
 
 ## 🔄 Próximas Mejoras
-
+- [ ] Persistencia en el login
+- [🆗] Sistema de reserva de libros (pendiente cambiar el buscador de libros y usuarios, arreglar el devolucion )
+- [🆗] Catálogo digital de libros
 - [ ] Integración con MercadoPago para pagos de membresía
 - [ ] Sistema de notificaciones por email
-- [ ] Recordatorios automáticos de pagos
+- [ ] Recordatorios automáticos de vencimiento de libros
 - [ ] Panel de estadísticas y reportes
-- [ ] Sistema de reserva de libros
-- [ ] Catálogo digital de libros
+
 
 ## 🤝 Contribución
 

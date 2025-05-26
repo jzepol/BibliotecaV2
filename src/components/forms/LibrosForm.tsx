@@ -23,6 +23,7 @@ export default function LibrosForm({ onSuccess, onClose }: LibroFormProps) {
     materia: '',
     bibliotecario: '',
     cutter: '',
+    st: '',
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +57,7 @@ export default function LibrosForm({ onSuccess, onClose }: LibroFormProps) {
         materia: '',
         bibliotecario: '',
         cutter: '',
+        st: '',
       })
       onSuccess()
       onClose()

@@ -73,6 +73,7 @@ model Taller {
 }
 model Libro {
   id                 Int      @id @default(autoincrement())
+  st                 Int?      
   ISBN               String?  @db.VarChar(255)
   autor              String?  @db.VarChar(255)
   titulo             String

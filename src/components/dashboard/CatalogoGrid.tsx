@@ -21,6 +21,7 @@ interface Libro {
   ubicacion?: string
   bibliotecario?: string
   cutter?: string
+  st?: number
 }
 
 export default function CatalogoGrid() {
@@ -96,7 +97,7 @@ export default function CatalogoGrid() {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>St</th>
               <th>ISBN</th>
               <th>Título</th>
               <th>Subtítulo</th>
@@ -117,7 +118,7 @@ export default function CatalogoGrid() {
           <tbody>
             {librosPaginados.map((l) => (
               <tr key={l.id}>
-                <td>{l.id}</td>
+                <td>{l.st}</td>
                 <td>{l.ISBN || '-'}</td>
                 <td>{l.titulo}</td>
                 <td>{l.subtitulo || '-'}</td>
@@ -156,6 +157,18 @@ export default function CatalogoGrid() {
         <div className="modal-overlay" onClick={() => setLibroEditando(null)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <h3>Editar Libro</h3>
+                          <input
+                type="number"
+                value={libroEditando.st?.toString() || ''}
+                onChange={e =>
+                  setLibroEditando({
+                    ...libroEditando,
+                    st: Number(e.target.value) || 0
+                  })
+                }
+                placeholder="Código ubicación en estantería"
+                required
+              />
             <input value={libroEditando.titulo} onChange={e => setLibroEditando({ ...libroEditando, titulo: e.target.value })} placeholder="Título" required />
             <input value={libroEditando.autor || ''} onChange={e => setLibroEditando({ ...libroEditando, autor: e.target.value })} placeholder="Autor" />
             <input value={libroEditando.ISBN || ''} onChange={e => setLibroEditando({ ...libroEditando, ISBN: e.target.value })} placeholder="ISBN" />
