@@ -38,13 +38,19 @@ export default function AsociadosGrid() {
     cargarAsociados()
   }, [])
 
+  const formatFechaLocal = (fechaIso: string) => {
+    const [year, month, day] = fechaIso.split('T')[0].split('-')
+    return `${day}/${month}/${year}`
+  }
+
   const filtrados = Array.isArray(asociados)
     ? asociados.filter((a) => {
         const nombreCompleto = `${a.apellido ?? ''} ${a.nombre ?? ''}`.toLowerCase()
         const dniStr = a.dni?.toString?.() ?? ''
-        const telefonoStr = typeof a.telefono === 'bigint' || typeof a.telefono === 'number'
-          ? a.telefono.toString()
-          : ''
+        const telefonoStr =
+          typeof a.telefono === 'bigint' || typeof a.telefono === 'number'
+            ? a.telefono.toString()
+            : ''
         return (
           nombreCompleto.includes(filtro.toLowerCase()) ||
           dniStr.includes(filtro) ||
@@ -65,8 +71,8 @@ export default function AsociadosGrid() {
       a.telefono ? a.telefono.toString() : '',
       a.email,
       a.direccion,
-      new Date(a.fechaNacimiento).toLocaleDateString(),
-      new Date(a.fechaInscripcion).toLocaleDateString(),
+      formatFechaLocal(a.fechaNacimiento),
+      formatFechaLocal(a.fechaInscripcion),
       a.categoria,
       a.escuela || '',
       a.curso || '',
@@ -131,6 +137,24 @@ export default function AsociadosGrid() {
       column.width = 20
     })
 
+    filtrados.forEach(a => {
+      worksheet.addRow({
+        id: a.id,
+        apellido: a.apellido,
+        nombre: a.nombre,
+        dni: a.dni,
+        telefono: a.telefono?.toString() ?? '',
+        email: a.email,
+        direccion: a.direccion,
+        fechaNacimiento: formatFechaLocal(a.fechaNacimiento),
+        fechaInscripcion: formatFechaLocal(a.fechaInscripcion),
+        categoria: a.categoria,
+        escuela: a.escuela || '',
+        curso: a.curso || '',
+        comentario: a.comentario || ''
+      })
+    })
+
     const buffer = await workbook.xlsx.writeBuffer()
     const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
     saveAs(blob, 'plantilla_importacion_asociados.xlsx')
@@ -169,7 +193,7 @@ export default function AsociadosGrid() {
     <div className="grid-asociados">
       <Link href="/asociarse" className="dashboard-tab-button">Agregar Socix</Link>
       <h2>Listado</h2>
-      
+
       <input
         type="text"
         placeholder="Filtrar por nombre, DNI o teléfono..."
@@ -215,8 +239,8 @@ export default function AsociadosGrid() {
                 <td>{a.telefono ? a.telefono.toString() : '-'}</td>
                 <td>{a.email}</td>
                 <td>{a.direccion}</td>
-                <td>{new Date(a.fechaNacimiento).toLocaleDateString()}</td>
-                <td>{new Date(a.fechaInscripcion).toLocaleDateString()}</td>
+                <td>{formatFechaLocal(a.fechaNacimiento)}</td>
+                <td>{formatFechaLocal(a.fechaInscripcion)}</td>
                 <td>{a.categoria}</td>
                 <td>{a.escuela || '-'}</td>
                 <td>{a.curso || '-'}</td>
