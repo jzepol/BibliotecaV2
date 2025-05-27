@@ -15,17 +15,22 @@
 }
 
 .nav a,
-.dropdown-btn {
+.dropdown-btn,
+.nav-link-button {
   color: white;
   background: transparent;
   text-decoration: none;
   font-size: 0.9rem;
   padding: 0.4rem 0.5rem;
   transition: color 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .nav a:hover,
-.dropdown-btn:hover {
+.dropdown-btn:hover,
+.nav-link-button:hover {
   color: #ff3bef;
 }
 

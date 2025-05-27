@@ -2,11 +2,13 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useAuth } from '@/context/AuthContext'
 import '@/styles/Header.css'
 
 export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false)
   const [menuAbierto, setMenuAbierto] = useState(false)
+  const { isAuthenticated, logout } = useAuth()
 
   const toggleMenu = () => setMenuAbierto(!menuAbierto)
 
@@ -47,7 +49,16 @@ export default function Header() {
 
         <div className="nav-right">
           <Link href="/asociarse">Quiero ser parte</Link>
-          <Link href="/login">Iniciar sesión</Link>
+          {isAuthenticated ? (
+            <>
+              <Link href="/dashboard">Panel de control</Link>
+              <button onClick={logout} className="nav-link-button">
+                Cerrar sesión
+              </button>
+            </>
+          ) : (
+            <Link href="/login">Iniciar sesión</Link>
+          )}
         </div>
       </nav>
     </header>

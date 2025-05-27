@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useAuth } from '@/context/AuthContext'
 import '@/styles/LoginForm.css'
 
 export default function LoginForm() {
   const router = useRouter()
+  const { isAuthenticated } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -27,14 +29,21 @@ export default function LoginForm() {
       })
 
       if (res.ok) {
-        router.push('/dashboard')
+        // Forzar una recarga completa de la página para actualizar el estado
+        window.location.href = '/dashboard'
       } else {
         const data = await res.json()
         setError(data.error || 'Error al iniciar sesión')
       }
-    } catch  {
+    } catch {
       setError('Error de red')
     }
+  }
+
+  // Si ya está autenticado, redirigir al dashboard
+  if (isAuthenticated) {
+    router.push('/dashboard')
+    return null
   }
 
   return (

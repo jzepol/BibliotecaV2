@@ -1,6 +1,6 @@
 .dashboard-container {
   min-height: 100vh;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
   background-color: #f9f9f9;
   font-family: Arial, sans-serif;
 }

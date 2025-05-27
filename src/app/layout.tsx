@@ -2,13 +2,18 @@ import '@/styles/main.css'
 import Header from '@/components/landing/Header'
 import Footer from '@/components/landing/Footer'
 import HorarioDesplegable from '@/components/horarios/HorarioDesplegable'
+import { AuthProvider } from '@/context/AuthContext'
 
 import { ReactNode } from 'react'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
 
-export const metadata = {
-  title: 'Biblioteca Popular Antonio Esteban Agüero',
-  description:
-    'Sitio oficial de la Biblioteca Popular Antonio Esteban Agüero, ubicada en Villa Mercedes, San Luis. Promoviendo la lectura, la cultura y la autogestión desde hace más de 30 años.',
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'Biblioteca Popular Aguero',
+  description: 'Biblioteca Popular Aguero - Espacio cultural y educativo',
   keywords: [
     'Biblioteca Villa Mercedes',
     'Antonio Esteban Agüero',
@@ -48,15 +53,18 @@ export const metadata = {
   }
 }
 
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
-      <body className="layout-body">
-        <Header />
-        <main className="layout-main">{children}</main>
-        <HorarioDesplegable />
-        <Footer />
+      <body className={inter.className}>
+        <AuthProvider>
+          <div className="layout-body">
+            <Header />
+            <main className="layout-main">{children}</main>
+            <HorarioDesplegable />
+            <Footer />
+          </div>
+        </AuthProvider>
       </body>
     </html>
   )
