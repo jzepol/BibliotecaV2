@@ -48,12 +48,12 @@ export async function POST(req: Request) {
     })
 
     return NextResponse.json({
-  ...nuevoAsociado,
-  telefono: nuevoAsociado.telefono !== null ? nuevoAsociado.telefono.toString() : null
-}, { status: 201 })
+      ...nuevoAsociado,
+      telefono: nuevoAsociado.telefono?.toString() ?? null
+    }, { status: 201 })
 
   } catch (error) {
-    console.error(error)
+    console.error('Error al crear asociado:', error)
     return NextResponse.json({ error: 'Error al procesar el formulario' }, { status: 500 })
   }
 }

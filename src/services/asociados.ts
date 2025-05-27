@@ -12,6 +12,7 @@ export async function crearAsociado(data: {
   escuela?: string
   curso?: string
   comentario?: string
+  telefono?: bigint | null
 }) {
   return await prisma.asociado.create({
     data: {

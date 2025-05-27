@@ -33,7 +33,7 @@ export default function TallerForm({
     if (tallerEditado) {
       setTitulo(tallerEditado.titulo)
       setDescripcion(tallerEditado.descripcion)
-      setFecha(tallerEditado.fecha.slice(0, 10))
+      setFecha(tallerEditado.fecha.split('T')[0])
       setHora(tallerEditado.hora)
       setFacilitador(tallerEditado.facilitador)
       setImagenUrl(tallerEditado.imagenUrl || '')
@@ -83,30 +83,35 @@ export default function TallerForm({
       imagenUrl: finalUrl,
     }
 
-    const res = await fetch(
-      tallerEditado ? `/api/talleres/${tallerEditado.id}` : '/api/talleres',
-      {
-        method: tallerEditado ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+    try {
+      const res = await fetch(
+        tallerEditado ? `/api/talleres/${tallerEditado.id}` : '/api/talleres',
+        {
+          method: tallerEditado ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }
+      )
+
+      if (res.ok) {
+        alert(tallerEditado ? 'Taller actualizado ✅' : 'Taller creado ✅')
+        onTallerGuardado()
+        setTitulo('')
+        setDescripcion('')
+        setFecha('')
+        setHora('')
+        setFacilitador('')
+        setImagen(null)
+        setImagenUrl('')
+      } else {
+        throw new Error('Error al guardar el taller')
       }
-    )
-
-    if (res.ok) {
-      alert(tallerEditado ? 'Taller actualizado ✅' : 'Taller creado ✅')
-      onTallerGuardado()
-      setTitulo('')
-      setDescripcion('')
-      setFecha('')
-      setHora('')
-      setFacilitador('')
-      setImagen(null)
-      setImagenUrl('')
-    } else {
+    } catch (error) {
+      console.error('Error:', error)
       alert('Error al guardar el taller')
+    } finally {
+      setSubiendo(false)
     }
-
-    setSubiendo(false)
   }
 
   return (

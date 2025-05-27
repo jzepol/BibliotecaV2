@@ -3,10 +3,11 @@
 
 import PrestamosGrid from '@/components/dashboard/PrestamosGrid'
 import Link from 'next/link'
+import '@/styles/Dashboard.css'
 
 export default function PrestamosPage() {
   return (
-    <main style={{ padding: '2rem' }}>
+    <main className="dashboard-catalogo">
         <div className="dashboard-navigation">
   <Link href="/dashboard" className="dashboard-tab-button">Novedades</Link>
   <Link href="/dashboard" className="dashboard-tab-button">Eventos</Link>

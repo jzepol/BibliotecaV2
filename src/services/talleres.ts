@@ -10,24 +10,44 @@ export async function crearTaller(data: {
   hora: string
   facilitador: string
 }) {
+  // Asegurarnos de que la fecha sea un objeto Date válido
+  const fechaObj = new Date(data.fecha)
+  if (isNaN(fechaObj.getTime())) {
+    throw new Error('Fecha inválida')
+  }
+
   return await prisma.taller.create({
     data: {
       ...data,
-      fecha: new Date(data.fecha) 
+      fecha: fechaObj
     }
   })
 }
 
 export async function obtenerTalleres() {
-  return await prisma.taller.findMany({
+  const talleres = await prisma.taller.findMany({
     orderBy: { fecha: 'desc' },
   })
+  
+  // Convertir las fechas a strings ISO para el frontend
+  return talleres.map(taller => ({
+    ...taller,
+    fecha: taller.fecha.toISOString()
+  }))
 }
 
 export async function obtenerTallerPorId(id: number) {
-  return await prisma.taller.findUnique({
+  const taller = await prisma.taller.findUnique({
     where: { id },
   })
+
+  if (!taller) return null
+
+  // Convertir la fecha a string ISO para el frontend
+  return {
+    ...taller,
+    fecha: taller.fecha.toISOString()
+  }
 }
 
 export async function actualizarTaller(id: number, data: {
@@ -38,13 +58,25 @@ export async function actualizarTaller(id: number, data: {
   hora: string
   facilitador: string
 }) {
-  return await prisma.taller.update({
+  // Asegurarnos de que la fecha sea un objeto Date válido
+  const fechaObj = new Date(data.fecha)
+  if (isNaN(fechaObj.getTime())) {
+    throw new Error('Fecha inválida')
+  }
+
+  const taller = await prisma.taller.update({
     where: { id },
     data: {
       ...data,
-      fecha: new Date(data.fecha) // conversión segura
+      fecha: fechaObj
     }
   })
+
+  // Convertir la fecha a string ISO para el frontend
+  return {
+    ...taller,
+    fecha: taller.fecha.toISOString()
+  }
 }
 
 export async function eliminarTaller(id: number) {
@@ -52,9 +84,10 @@ export async function eliminarTaller(id: number) {
     where: { id },
   })
 }
+
 export async function obtenerTalleresProximos() {
   const hoy = new Date()
-  return await prisma.taller.findMany({
+  const talleres = await prisma.taller.findMany({
     where: {
       fecha: {
         gte: hoy,
@@ -62,5 +95,11 @@ export async function obtenerTalleresProximos() {
     },
     orderBy: { fecha: 'asc' },
   })
+
+  // Convertir las fechas a strings ISO para el frontend
+  return talleres.map(taller => ({
+    ...taller,
+    fecha: taller.fecha.toISOString()
+  }))
 }
 

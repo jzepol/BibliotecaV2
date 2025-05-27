@@ -25,7 +25,7 @@ export default function DashboardPage() {
   const [eventoEditado, setEventoEditado] = useState<Evento | undefined>()
 
   const [talleres, setTalleres] = useState<Taller[]>([])
-  const [tallerEditado, setTallerEditado] = useState<Taller | undefined>()
+
 
   const cargarNoticias = async () => {
     const res = await fetch('/api/noticias/all')
@@ -121,17 +121,9 @@ export default function DashboardPage() {
         ) : (
           <>
             <TallerForm
-              tallerEditado={
-                tallerEditado
-                  ? {
-                      ...tallerEditado,
-                      fecha: tallerEditado.fecha.toISOString().split('T')[0], 
-                    }
-                  : undefined
-              }
               onTallerGuardado={cargarTalleres}
             />
-            <TalleresGrid talleres={talleres} onEdit={setTallerEditado} onDelete={eliminarTaller} />
+            <TalleresGrid talleres={talleres}  onDelete={eliminarTaller} />
           </>
         )}
       </div>

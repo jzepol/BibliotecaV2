@@ -35,11 +35,17 @@ export default function LibrosForm({ onSuccess, onClose }: LibroFormProps) {
     e.preventDefault()
     if (!formData.titulo.trim()) return alert('El título es obligatorio')
 
+        const payload = {
+      ...formData,
+      st: formData.st ? parseInt(formData.st, 10) : undefined, // solo lo manda si es válido
+    }
+
     const res = await fetch('/api/catalogo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(payload)
     })
+
 
     if (res.ok) {
       setFormData({

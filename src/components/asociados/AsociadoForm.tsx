@@ -8,7 +8,7 @@ interface AsociadoFormData {
   apellido: string
   nombre: string
   dni: number
-  telefono: bigint | null
+  telefono: string
   fechaNacimiento: string
   direccion: string
   categoria: string
@@ -23,7 +23,7 @@ export default function AsociadoForm() {
     apellido: '',
     nombre: '',
     dni: 0,
-    telefono: null,
+    telefono: '',
     fechaNacimiento: '',
     direccion: '',
     categoria: 'ACTIVO',
@@ -68,7 +68,7 @@ export default function AsociadoForm() {
     // Preparamos payload compatible con JSON.stringify
     const payload = {
       ...formData,
-      telefono: formData.telefono !== null ? formData.telefono.toString() : null
+      telefono: formData.telefono || null
     }
 
     try {
@@ -89,7 +89,7 @@ export default function AsociadoForm() {
         apellido: '',
         nombre: '',
         dni: 0,
-        telefono: null,
+        telefono: '',
         fechaNacimiento: '',
         direccion: '',
         categoria: 'ACTIVO',
@@ -118,15 +118,9 @@ export default function AsociadoForm() {
         <FormField 
           label="Teléfono" 
           name="telefono" 
-          type="number" 
-          value={formData.telefono?.toString() || ''} 
-          onChange={(e) => {
-            const value = e.target.value
-            setFormData({ 
-              ...formData, 
-              telefono: value ? BigInt(value) : null 
-            })
-          }} 
+          type="tel" 
+          value={formData.telefono} 
+          onChange={handleChange}
         />
         <FormField label="Fecha de nacimiento" name="fechaNacimiento" type="date" value={formData.fechaNacimiento} onChange={handleChange} required />
         <FormField label="Dirección" name="direccion" value={formData.direccion} onChange={handleChange} required />

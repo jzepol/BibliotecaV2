@@ -1,4 +1,4 @@
-.prestamos-grid {
+.grid-asociados {
   width: 100%;
   max-width: 100%;
   margin: 2rem auto;
@@ -9,39 +9,22 @@
   overflow-x: auto;
 }
 
-.prestamos-grid h2 {
+.grid-asociados h2 {
   text-align: center;
   margin-bottom: 1rem;
   font-size: 1.5rem;
   color: #53107F;
 }
 
-.prestamos-grid input,
-.prestamos-grid select {
+.dashboard-navigation input {
   display: block;
-  margin: 0.5rem auto;
+  margin: 0 auto 1rem auto;
   padding: 0.5rem 1rem;
   width: 80%;
   max-width: 400px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 0.95rem;
-}
-
-.prestamos-grid button {
-  background-color: #53107F;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 999px;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 1rem auto;
-  display: block;
-}
-
-.prestamos-grid button:hover {
-  background-color: #ff3bef;
 }
 
 .tabla-scroll {
@@ -68,41 +51,152 @@ th, td {
 }
 
 tr:hover {
-  background-color: #ff3bef33;
+  background-color: #f0f0f0;
 }
 
-/* Alerta vencido */
-.vencido {
-  background-color: #ffe5e5 !important;
-  color: #b30000;
+tr.vencido {
+  background-color: #ffcccc !important;
+}
+
+.btn-accion {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin: 0 0.25rem;
+  transition: transform 0.2s;
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
+}
+
+.btn-accion:hover {
+  transform: scale(1.1);
+}
+
+.btn-accion.devolver {
+  background-color: #53107F;
+  color: white;
   font-weight: bold;
 }
 
-.vencido td {
-  border-top: 2px solid #b30000;
-  border-bottom: 2px solid #b30000;
-}
-.busqueda-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto 1rem auto;
+.btn-accion.devolver:hover {
+  background-color: #ff3bef;
 }
 
-.busqueda-wrapper input {
-  width: 100%;
-  padding: 0.6rem 2.5rem 0.6rem 1rem;
+.paginacion {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.paginacion button {
+  padding: 0.3rem 0.8rem;
   border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.paginacion button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.busqueda-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0.2rem 0 1rem;
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.busqueda-lista li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.busqueda-lista li:hover {
+  background-color: #f2e6ff; /* suave violeta */
+}
+
+input[type="text"] {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 0.2rem;
+  font-size: 1rem;
+}
+.prestamo-form {
+  margin: 1rem auto 2rem;
+  max-width: 600px;
+  background: #f9f9f9;
+  border: 2px solid #53107F;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.prestamo-form h3 {
+  margin-bottom: 1rem;
+  color: #53107F;
+  text-align: center;
+}
+
+.prestamo-form input[type="text"],
+.prestamo-form select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
   border-radius: 8px;
+  border: 1px solid #ccc;
   font-size: 0.95rem;
 }
 
-.busqueda-wrapper::after {
-  content: '🔍';
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.1rem;
-  pointer-events: none;
+.prestamo-form button {
+  background-color: #53107F;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.prestamo-form button:hover {
+  background-color: #ff3bef;
+}
+
+.mensaje-error {
+  color: red;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.busqueda-lista {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 160px;
+  overflow-y: auto;
+  background: white;
+}
+
+.busqueda-lista li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.busqueda-lista li:hover {
+  background-color: #f0f0f0;
 }
