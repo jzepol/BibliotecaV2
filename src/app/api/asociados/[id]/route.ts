@@ -3,6 +3,14 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
+// Función auxiliar para convertir BigInt a string en la respuesta
+function convertirBigInt<T extends Record<string, unknown>>(obj: T): T {
+  return JSON.parse(JSON.stringify(obj, (_, v) =>
+    typeof v === 'bigint' ? v.toString() : v
+  ))
+}
+
+
 export async function PUT(request: NextRequest) {
   const url = new URL(request.url)
   const id = Number(url.pathname.split('/').pop())
@@ -22,7 +30,7 @@ export async function PUT(request: NextRequest) {
       },
     })
 
-    return NextResponse.json(asociadoActualizado)
+    return NextResponse.json(convertirBigInt(asociadoActualizado))
   } catch (err) {
     console.error('Error actualizando asociado:', err)
     return NextResponse.json(

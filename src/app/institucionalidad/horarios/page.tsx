@@ -15,7 +15,7 @@ export default function HorariosPage() {
 
       <div className="horario-bloque">
         <h2>Tarde</h2>
-        <p>Lunes, Miércoles, Jueves y Viernes</p>
+        <p>Lunes,Martes, Miércoles, Jueves y Viernes</p>
         <p>16:00 a 19:00 hs</p>
       </div>
     </div>
