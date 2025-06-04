@@ -1,0 +1,109 @@
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.popup h3 {
+  color: #53107F;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #53107F;
+  color: white;
+}
+
+.table select,
+.table input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.table select {
+  background-color: white;
+}
+
+.linkComprobante {
+  color: #53107F;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.linkComprobante:hover {
+  text-decoration: underline;
+}
+
+.popupFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.botonGuardar,
+.botonCerrar {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.botonGuardar {
+  background-color: #53107F;
+  color: white;
+}
+
+.botonGuardar:hover:not(:disabled) {
+  background-color: #7a1fb3;
+}
+
+.botonGuardar:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.botonCerrar {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.botonCerrar:hover {
+  background-color: #e0e0e0;
+} 

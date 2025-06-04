@@ -15,6 +15,7 @@ export default function PrestamosPage() {
   <Link href="/dashboard/asociados" className="dashboard-tab-button">Socixs</Link>
   <Link href="/dashboard/catalogo" className="dashboard-tab-button">Catálogo</Link>
   <Link href="/dashboard/prestamos" className="dashboard-tab-button">Prestamo</Link>
+  <Link href="/dashboard/pagos" className="dashboard-tab-button">Pagos</Link>
     </div>
       <PrestamosGrid />
     </main>

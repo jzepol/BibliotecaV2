@@ -58,6 +58,7 @@ model Asociado {
   comentario      String?
   fechaInscripcion DateTime @default(now())
   prestamos       Prestamo[]
+  pagos           Pago[]
 }
 
 
@@ -109,3 +110,41 @@ enum EstadoPrestamo {
   DEVUELTO
   VENCIDO
 }
+enum Mes {
+  ENERO
+  FEBRERO
+  MARZO
+  ABRIL
+  MAYO
+  JUNIO
+  JULIO
+  AGOSTO
+  SEPTIEMBRE
+  OCTUBRE
+  NOVIEMBRE
+  DICIEMBRE
+}
+
+enum EstadoPago {
+  PENDIENTE
+  PAGADO
+  IMPAGO
+}
+
+model Pago {
+  id             Int        @id @default(autoincrement())
+  asociado       Asociado   @relation(fields: [asociadoId], references: [id])
+  asociadoId     Int
+  mes            Mes
+  año            Int
+  fechaPago      DateTime   @default(now())
+  comprobanteUrl String?
+  estado         EstadoPago @default(PENDIENTE)
+  comentario     String?
+
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@unique([asociadoId, mes, año])
+}
+
