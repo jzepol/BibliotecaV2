@@ -62,6 +62,10 @@ export default function ComisionPage() {
           <Image src="/img/comision/guadalupe.jpeg" alt="Voluntario 4" width={160} height={160} />
           <p className="voluntario-nombre">Guadalupe Miranda</p>
         </div>
+        <div className="voluntario-item">
+          <Image src="/img/comision/santini.jpeg" alt="Voluntario 4" width={160} height={160} />
+          <p className="voluntario-nombre">Juan Ignacio Santini</p>
+        </div>
       </div>
     </div>
   )
