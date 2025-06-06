@@ -13,13 +13,13 @@ interface Asociado {
   nombre: string
   dni: number
   telefono: bigint | null
-  fechaNacimiento: string | null
+  fechaNacimiento: string
   direccion: string
   categoria: string
   escuela?: string
   curso?: string
   comentario?: string
-  fechaInscripcion: string | null
+  fechaInscripcion: string
 }
 
 export default function AsociadosGrid() {
@@ -38,23 +38,19 @@ export default function AsociadosGrid() {
     cargarAsociados()
   }, [])
 
-  const formatFechaLocal = (fechaIso: string | null | undefined): string => {
-    if (!fechaIso) return '-'
-    try {
-      const [year, month, day] = fechaIso.split('T')[0].split('-')
-      return `${day}/${month}/${year}`
-    } catch {
-      return '-'
-    }
+  const formatFechaLocal = (fechaIso: string) => {
+    const [year, month, day] = fechaIso.split('T')[0].split('-')
+    return `${day}/${month}/${year}`
   }
 
   const filtrados = Array.isArray(asociados)
     ? asociados.filter((a) => {
         const nombreCompleto = `${a.apellido ?? ''} ${a.nombre ?? ''}`.toLowerCase()
         const dniStr = a.dni?.toString?.() ?? ''
-        const telefonoStr = typeof a.telefono === 'bigint' || typeof a.telefono === 'number'
-          ? a.telefono.toString()
-          : ''
+        const telefonoStr =
+          typeof a.telefono === 'bigint' || typeof a.telefono === 'number'
+            ? a.telefono.toString()
+            : ''
         return (
           nombreCompleto.includes(filtro.toLowerCase()) ||
           dniStr.includes(filtro) ||
@@ -275,7 +271,7 @@ export default function AsociadosGrid() {
             <input value={asociadoEditando.telefono?.toString() || ''} onChange={e => setAsociadoEditando({ ...asociadoEditando, telefono: e.target.value ? BigInt(e.target.value) : null })} placeholder="Teléfono" type="number" />
             <input value={asociadoEditando.email} onChange={e => setAsociadoEditando({ ...asociadoEditando, email: e.target.value })} placeholder="Email" type="email" />
             <input value={asociadoEditando.direccion} onChange={e => setAsociadoEditando({ ...asociadoEditando, direccion: e.target.value })} placeholder="Dirección" />
-            <input value={asociadoEditando.fechaNacimiento ? new Date(asociadoEditando.fechaNacimiento).toISOString().split('T')[0] : ''} onChange={e => setAsociadoEditando({ ...asociadoEditando, fechaNacimiento: e.target.value })} type="date" />
+            <input value={new Date(asociadoEditando.fechaNacimiento).toISOString().split('T')[0]} onChange={e => setAsociadoEditando({ ...asociadoEditando, fechaNacimiento: e.target.value })} type="date" />
             <select value={asociadoEditando.categoria} onChange={e => setAsociadoEditando({ ...asociadoEditando, categoria: e.target.value })}>
               <option value="ACTIVO">Activo</option>
               <option value="JUVENIL">Juvenil</option>

@@ -200,12 +200,3 @@ input[type="text"] {
 .busqueda-lista li:hover {
   background-color: #f0f0f0;
 }
-.hero-separator {
-  width: 100% !important;
-  height: 1rem !important;
-  display: block !important;
-  background: #53107F !important;
-  opacity: 0.2 !important;
-  margin: 1.8rem 0 0.3rem 0 !important;
-  padding-top: 0.5rem !important;
-}

@@ -73,9 +73,7 @@ export default function PrestamosGrid() {
       <h2>Gestión de Préstamos</h2>
 
       <PrestamosForm onSuccess={cargarPrestamos} />
-	<div>
-            <h2> Buscar prestamo </h2>
-          </div>
+
       <div className="dashboard-navigation">
         <input
           type="text"
@@ -87,7 +85,7 @@ export default function PrestamosGrid() {
           }}
         />
       </div>
-	<hr className="hero-separator" />
+
       <div className="tabla-scroll">
         <table>
           <thead>
