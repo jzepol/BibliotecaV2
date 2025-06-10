@@ -94,3 +94,34 @@
 .detalle-modal .cerrar:hover {
   background-color: #ff3bef;
 }
+
+.estado-select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.estado-select.PAGADO {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #45a049;
+}
+
+.estado-select.IMPAGO {
+  background-color: #f44336;
+  color: white;
+  border-color: #da190b;
+}
+
+.estado-select.PENDIENTE {
+  background-color: #326abe;
+  color: white;
+  border-color: #2f6ae9;
+}
+
+.estado-select:hover {
+  opacity: 0.9;
+}

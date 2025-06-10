@@ -102,8 +102,6 @@ model Prestamo {
   estado     EstadoPrestamo
   fechaInicio DateTime @default(now())
   fechaFin    DateTime?
-
-  @@unique([asociadoId, libroId]) // evita duplicados
 }
 
 enum EstadoPrestamo {

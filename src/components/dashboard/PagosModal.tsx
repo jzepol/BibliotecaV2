@@ -114,6 +114,7 @@ export default function PagosModal({
         <select
           value={pagosEditados[p.mes]?.estado || p.estado}
           onChange={(e) => handleCambio(p.mes, 'estado', e.target.value as EstadoPago)}
+          className={`estado-select ${pagosEditados[p.mes]?.estado || p.estado}`}
         >
           <option value="PENDIENTE">Pendiente</option>
           <option value="PAGADO">Abono</option>
