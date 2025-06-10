@@ -87,7 +87,7 @@ export default function PagosModal({
         body: JSON.stringify({ ...pago, asociadoId }),
       })
     }
-    setPagosEditados({})
+    setPagosEditados({} as Record<MesEnum, Pago>)
     onClose()
   }
 
