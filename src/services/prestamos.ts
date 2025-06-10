@@ -162,4 +162,24 @@ export async function obtenerPrestamosPorLibro(libroId: number) {
     orderBy: { fechaInicio: 'desc' },
   })
   return convertirBigInt(prestamos)
+}
+
+export async function verificarPrestamosLibro(libroId: number) {
+  const prestamos = await prisma.prestamo.findMany({
+    where: {
+      libroId
+    },
+    include: {
+      asociado: true,
+      libro: true
+    },
+    orderBy: {
+      fechaInicio: 'desc'
+    }
+  })
+  
+  console.log('📚 Todos los préstamos del libro:', libroId)
+  console.log(prestamos)
+  
+  return convertirBigInt(prestamos)
 } 
