@@ -72,6 +72,7 @@ export default function PrestamosForm({ onSuccess }: PrestamoFormProps) {
       } else {
         setMensaje(data.error || 'Error al registrar el préstamo')
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setMensaje('Error al conectar con el servidor')
     } finally {
