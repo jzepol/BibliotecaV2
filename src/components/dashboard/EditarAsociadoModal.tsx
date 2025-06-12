@@ -58,6 +58,8 @@ export default function EditarAsociadoModal({ asociado, onClose, onSave }: Props
         <select name="categoria" value={form.categoria} onChange={handleChange}>
           <option value="ACTIVO">Activo</option>
           <option value="JUVENIL">Juvenil</option>
+          <option value="CONTRIBUYENTE">Contribuyente</option>
+          <option value="DE_BAJA">De baja</option>
         </select>
         <input type="text" name="escuela" value={form.escuela || ''} onChange={handleChange} placeholder="Escuela" />
         <input type="text" name="curso" value={form.curso || ''} onChange={handleChange} placeholder="Curso" />

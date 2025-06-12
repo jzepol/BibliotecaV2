@@ -71,6 +71,12 @@ export default function AsociadosGrid() {
     }
   }
 
+  const cargarAsociados = () => {
+    fetch('/api/asociados/all')
+      .then(res => res.json())
+      .then(data => setAsociados(data))
+  }
+
   return (
     
     <div className="grid-asociados">
@@ -132,6 +138,10 @@ export default function AsociadosGrid() {
         <DetallesModal
           asociado={asociadoSeleccionado}
           onClose={() => setAsociadoSeleccionado(null)}
+          onSave={() => {
+            cargarAsociados();
+            setAsociadoSeleccionado(null);
+          }}
         />
       )}
 

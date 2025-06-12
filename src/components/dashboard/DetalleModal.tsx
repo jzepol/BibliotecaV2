@@ -20,9 +20,10 @@ interface DetallesModalProps {
     comentario?: string
   }
   onClose: () => void
+  onSave?: () => void
 }
 
-export default function DetallesModal({ asociado, onClose }: DetallesModalProps) {
+export default function DetallesModal({ asociado, onClose, onSave }: DetallesModalProps) {
   const [datos, setDatos] = useState({ ...asociado })
 
   const handleChange = (campo: keyof typeof datos, valor: string) => {
@@ -44,6 +45,7 @@ export default function DetallesModal({ asociado, onClose }: DetallesModalProps)
 
     if (res.ok) {
       alert('✅ Datos actualizados correctamente')
+      if (onSave) onSave()
       onClose()
     } else {
       alert('❌ Error al actualizar datos')
