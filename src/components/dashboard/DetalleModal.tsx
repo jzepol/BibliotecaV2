@@ -101,6 +101,7 @@ export default function DetallesModal({ asociado, onClose }: DetallesModalProps)
             <option value="ACTIVO">Activo</option>
             <option value="JUVENIL">Juvenil</option>
             <option value="CONTRIBUYENTE">Contribuyente</option>
+            <option value="DE_BAJA">De baja</option>
           </select>
         </div>
 

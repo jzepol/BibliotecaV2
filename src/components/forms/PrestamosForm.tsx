@@ -6,6 +6,7 @@ interface Asociado {
   id: number
   nombre: string
   apellido: string
+  categoria: string
 }
 
 interface Libro {
@@ -46,6 +47,12 @@ export default function PrestamosForm({ onSuccess }: PrestamoFormProps) {
 
     if (!asociadoId || !libroId) {
       setMensaje('Debe seleccionar un asociado y un libro')
+      return
+    }
+
+    const asociadoSeleccionado = asociados.find(a => a.id === Number(asociadoId))
+    if (asociadoSeleccionado && asociadoSeleccionado.categoria === 'DE_BAJA') {
+      alert('El asociado está dado de baja. Debe regularizar su situación para poder tomar prestado un libro.')
       return
     }
 

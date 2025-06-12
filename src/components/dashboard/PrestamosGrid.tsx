@@ -88,7 +88,7 @@ export default function PrestamosGrid() {
       <PrestamosForm onSuccess={cargarPrestamos} />
 
       <div className="dashboard-navigation">
-        <h2>Devolución</h2>
+        <h2 className='devolucion'>Devolución</h2>
         <input
           type="text"
           placeholder="Buscar por asociado o libro"

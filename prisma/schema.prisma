@@ -41,6 +41,7 @@ enum Categoria {
   ACTIVO
   JUVENIL
   CONTRIBUYENTE
+  DE_BAJA
 }
 
 model Asociado {
