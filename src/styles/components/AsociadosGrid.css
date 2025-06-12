@@ -72,6 +72,19 @@ tr:hover {
   cursor: pointer;
 }
 
+.btn-accion.eliminar:hover {
+  background-color: #cf2929e3;
+}
+.btn-accion.eliminar {
+  background-color: #8b0000e3;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .btn-accion.pagos:hover {
   background-color: #47c222;
 }

@@ -18,6 +18,7 @@ interface Prestamo {
     id: number
     titulo: string
     autor?: string
+    ISBN?: string
   }
 }
 
@@ -56,15 +57,27 @@ export default function PrestamosGrid() {
     const confirmar = confirm('¿Confirmar la devolución de este préstamo?')
     if (!confirmar) return
 
-    const res = await fetch(`/api/prestamos/${id}`, {
-      method: 'DELETE'
-    })
+    try {
+      const res = await fetch(`/api/prestamos/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          estado: 'DEVUELTO'
+        })
+      })
 
-    if (res.ok) {
-      alert('Préstamo devuelto correctamente ✅')
-      cargarPrestamos()
-    } else {
-      alert('Error al devolver el préstamo ❌')
+      if (res.ok) {
+        alert('Préstamo devuelto correctamente ✅')
+        cargarPrestamos()
+      } else {
+        const data = await res.json()
+        alert(data.error || 'Error al devolver el préstamo ❌')
+      }
+    } catch (error) {
+      console.error('Error al devolver el préstamo:', error)
+      alert('Error al conectar con el servidor')
     }
   }
 
@@ -75,6 +88,7 @@ export default function PrestamosGrid() {
       <PrestamosForm onSuccess={cargarPrestamos} />
 
       <div className="dashboard-navigation">
+        <h2>Devolución</h2>
         <input
           type="text"
           placeholder="Buscar por asociado o libro"
@@ -90,7 +104,7 @@ export default function PrestamosGrid() {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>ISBN</th>
               <th>Asociado</th>
               <th>Libro</th>
               <th>Estado</th>
@@ -105,7 +119,7 @@ export default function PrestamosGrid() {
               const vencido = p.estado === 'ACTIVO' && fechaFin < new Date()
               return (
                 <tr key={p.id} className={vencido ? 'vencido' : ''}>
-                  <td>{p.id}</td>
+                  <td>{p.libro.ISBN}</td>
                   <td>{p.asociado.apellido}, {p.asociado.nombre}</td>
                   <td>{p.libro.titulo}{p.libro.autor ? ` (${p.libro.autor})` : ''}</td>
                   <td>{vencido ? 'VENCIDO' : p.estado}</td>

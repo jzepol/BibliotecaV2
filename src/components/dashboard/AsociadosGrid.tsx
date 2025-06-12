@@ -47,6 +47,30 @@ export default function AsociadosGrid() {
 
   const totalPaginas = Math.ceil(filtrados.length / elementosPorPagina)
 
+  const eliminarAsociado = async (id: number) => {
+    const confirmar = confirm('¿Estás seguro de que quieres eliminar a este asociado?')
+    if (!confirmar) return
+
+    try {
+      const res = await fetch(`/api/asociados/${id}`, {
+        method: 'DELETE',
+      })
+
+      if (res.ok) {
+        alert('Asociado eliminado correctamente ✅')
+        fetch('/api/asociados/all') // Recargar la lista de asociados
+          .then(res => res.json())
+          .then(data => setAsociados(data))
+      } else {
+        const data = await res.json()
+        alert(data.error || 'Error al eliminar el asociado ❌')
+      }
+    } catch (error) {
+      console.error('Error al conectar con el servidor:', error)
+      alert('Error al conectar con el servidor ❌')
+    }
+  }
+
   return (
     
     <div className="grid-asociados">
@@ -72,8 +96,10 @@ export default function AsociadosGrid() {
             <th>Apellido</th>
             <th>Nombre</th>
             <th>DNI</th>
+            <th>Categoria</th>
+            <th>Comentario</th>
             <th>Acciones</th>
-            <th>Comentarios</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -84,10 +110,12 @@ export default function AsociadosGrid() {
                 <td>{a.apellido}</td>
                 <td>{a.nombre}</td>
                 <td>{a.dni}</td>
+                <td>{a.categoria}</td>
                 <td>{a.comentario}</td>
                 <td>
                   <button className="btn-accion pagos" onClick={() => setAsociadoParaPagos(a)}>Pagos💰</button>
                   <button className="btn-accion detalles" onClick={() => setAsociadoSeleccionado(a)}>Ver Detalles👁️</button>
+                  <button className="btn-accion eliminar" onClick={() => eliminarAsociado(a.id)}>Eliminar🗑️</button>
                 </td>
               </tr>
             ))}

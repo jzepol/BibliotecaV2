@@ -59,9 +59,8 @@ model Asociado {
   fechaInscripcion DateTime @default(now())
   prestamos       Prestamo[]
   pagos           Pago[]  
+  historialPrestamos HistorialPrestamo[]
 }
-
-
 
 model Taller {
   id           Int      @id @default(autoincrement())
@@ -73,6 +72,7 @@ model Taller {
   facilitador  String
   creadoEn     DateTime @default(now())
 }
+
 model Libro {
   id                 Int      @id @default(autoincrement())
   st                 Int?      
@@ -91,6 +91,7 @@ model Libro {
   bibliotecario      String?  @db.VarChar(255)
   cutter             String?  @db.VarChar(255)
   prestamos          Prestamo[]
+  historialPrestamos HistorialPrestamo[]
 }
 
 model Prestamo {
@@ -109,6 +110,7 @@ enum EstadoPrestamo {
   DEVUELTO
   VENCIDO
 }
+
 enum Mes { 
   ENERO
   FEBRERO
@@ -145,5 +147,18 @@ model Pago {
   updatedAt      DateTime   @updatedAt
 
   @@unique([asociadoId, mes, año])
+}
+
+model HistorialPrestamo {
+  id            Int           @id @default(autoincrement())
+  asociadoId    Int
+  libroId       Int
+  fechaInicio   DateTime
+  fechaFin      DateTime?
+  estadoFinal   EstadoPrestamo
+  fechaRegistro DateTime      @default(now())
+
+  asociado      Asociado      @relation(fields: [asociadoId], references: [id])
+  libro         Libro         @relation(fields: [libroId], references: [id])
 }
 

@@ -52,12 +52,28 @@ export async function crearPrestamo(
     const prestamoExistente = await prisma.prestamo.findFirst({
       where: {
         libroId,
-        estado: EstadoPrestamo.ACTIVO
+        estado: {
+          in: [EstadoPrestamo.ACTIVO]
+        }
       }
     })
 
+    console.log('📚 Prestamo existente para libro:', libroId, prestamoExistente);
+
     if (prestamoExistente) {
       throw new Error('Este libro ya está prestado')
+    }
+
+    // Verificar si el asociado tiene préstamos vencidos
+    const prestamosVencidos = await prisma.prestamo.findFirst({
+      where: {
+        asociadoId,
+        estado: EstadoPrestamo.VENCIDO
+      }
+    })
+
+    if (prestamosVencidos) {
+      throw new Error('El asociado tiene préstamos vencidos pendientes')
     }
 
     const fechaInicio = new Date()
@@ -81,9 +97,9 @@ export async function crearPrestamo(
     return convertirBigInt(prestamo)
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === 'P2002') {
-        throw new Error('Ya existe un préstamo activo para este libro')
-      }
+      console.error('Error de Prisma al crear préstamo:', error.code, error.message, error.meta);
+      // Dependiendo del código de error, puedes lanzar un mensaje más específico
+      // Por ahora, lanzamos el error original para depuración.
     }
     throw error
   }

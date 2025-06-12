@@ -71,7 +71,7 @@ npm run start        # Inicia el servidor de producción
 npm run lint         # Ejecuta el linter
 npx prisma studio    # Abre la interfaz visual de Prisma
 ```
-
+    SELECT setval(pg_get_serial_sequence('public."Prestamo"', 'id'), COALESCE((SELECT MAX(id) FROM public."Prestamo"), 0) + 1, false);
 ## 📁 Estructura del Proyecto
 
 ```

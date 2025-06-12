@@ -12,6 +12,7 @@ interface Libro {
   id: number
   titulo: string
   autor?: string
+  ISBN?: string
 }
 
 interface PrestamoFormProps {
@@ -84,9 +85,13 @@ export default function PrestamosForm({ onSuccess }: PrestamoFormProps) {
     `${a.apellido} ${a.nombre}`.toLowerCase().includes(filtroAsociado.toLowerCase())
   )
 
-  const librosFiltrados = libros.filter(l =>
-    l.titulo.toLowerCase().includes(filtroLibro.toLowerCase())
-  )
+  const librosFiltrados = libros.filter(l => {
+    const filtroLower = filtroLibro.toLowerCase();
+    return (
+      l.titulo.toLowerCase().includes(filtroLower) ||
+      (l.ISBN && l.ISBN.toLowerCase().includes(filtroLower))
+    );
+  })
 
   return (
     <form onSubmit={handleSubmit} className="prestamo-form">
@@ -120,12 +125,15 @@ export default function PrestamosForm({ onSuccess }: PrestamoFormProps) {
 
       <input
         type="text"
-        placeholder="Buscar libro por título"
+        placeholder="Buscar libro por título o ISBN"
         value={
           libroId
             ? libros.find(l => l.id === Number(libroId))?.titulo +
               (libros.find(l => l.id === Number(libroId))?.autor
                 ? ` (${libros.find(l => l.id === Number(libroId))?.autor})`
+                : '') +
+              (libros.find(l => l.id === Number(libroId))?.ISBN
+                ? ` (ISBN: ${libros.find(l => l.id === Number(libroId))?.ISBN})`
                 : '')
             : filtroLibro
         }
@@ -141,7 +149,7 @@ export default function PrestamosForm({ onSuccess }: PrestamoFormProps) {
               setLibroId(l.id.toString())
               setFiltroLibro('')
             }}>
-              {l.titulo}{l.autor ? ` (${l.autor})` : ''}
+              {l.titulo}{l.autor ? ` (${l.autor})` : ''}{l.ISBN ? ` (ISBN: ${l.ISBN})` : ''}
             </li>
           ))}
       </ul>
